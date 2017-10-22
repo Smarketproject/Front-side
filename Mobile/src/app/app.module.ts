@@ -8,17 +8,21 @@ import { MyApp } from './app.component';
 import { CadastroPage } from '../pages/cadastro/cadastro';
 import { LoginPage } from '../pages/login/login';
 import { RestProvider } from '../providers/rest/rest';
+import { HttpModule } from '@angular/http';
+
+
 
 @NgModule({
   declarations: [
     MyApp,
     CadastroPage,
-    LoginPage
+    LoginPage,
     
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
