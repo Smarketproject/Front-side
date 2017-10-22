@@ -16,7 +16,7 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    this.rest.postTeste();
+    
   }
 
   

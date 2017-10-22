@@ -28,24 +28,19 @@ export class RestProvider {
 
   //Método base para qualquer requisição get, retorna uma respota em json
   private getRequest(path:string){
-
+    var retorno:any;
     this.http.get(this.url + path)
-      .map(res => res.json())
-      .subscribe(data => {
-         console.log(data);
-      });
+      .map(res => res.json());
   }
 
   //Método base para qualquer requisição post, retorna uma respota em json
   private postRequest(path:string, data:any){
+    var retorno:any;
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let options = new RequestOptions({headers : headers});
-    this.http.post(this.url + path, data, options)
-        .map(res => res.json())
-        .subscribe(data => {
-          console.log(data);
-        });
+    return this.http.post(this.url + path, data, options)
+        .map(res => res.json());
   }
 
 }
