@@ -29,7 +29,7 @@ export class RestProvider {
   //Método base para qualquer requisição get, retorna uma respota em json
   private getRequest(path:string){
     var retorno:any;
-    this.http.get(this.url + path)
+    return this.http.get(this.url + path)
       .map(res => res.json());
   }
 
