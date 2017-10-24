@@ -11,7 +11,7 @@ import { MenuPage } from '../menu/menu';
 })
 export class LoginPage {
   account = {
-    email: "",
+    username: "",
     password: "",
   }
   constructor(public navCtrl: NavController, public navParams: NavParams, public rest: RestProvider) {

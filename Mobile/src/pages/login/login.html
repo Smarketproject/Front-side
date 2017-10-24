@@ -6,12 +6,12 @@
   
   
   <ion-content padding>
-    <!-- <form (submit)="doSignin()" padding> -->
+    <form (submit)="doSignin()" padding>
       <ion-list>
   
         <ion-item>
-          <ion-label floating>E-mail</ion-label>
-          <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
+          <ion-label floating>Nome</ion-label>
+          <ion-input type="name" [(ngModel)]="account.username" name="username"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label floating>Senha</ion-label>
@@ -19,11 +19,11 @@
         </ion-item>
   
         <div padding>
-          <button ion-button color="primary" block (click)="goToMenu()">Entrar</button>
+          <button ion-button color="primary" block>Entrar</button>
           <p class="center">Não é usuário? <strong (click)="goToCadastro()">Inscreva-se</strong></p>
         </div>
         
       </ion-list>
-    <!-- </form> -->
+    </form>
   </ion-content>
   
