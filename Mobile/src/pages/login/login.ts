@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
+import { CadastroPage } from '../cadastro/cadastro';
+import { MenuPage } from '../menu/menu';
 
 @IonicPage()
 @Component({
@@ -19,6 +21,12 @@ export class LoginPage {
     
   }
 
-  
+  goToCadastro(){
+    this.navCtrl.push(CadastroPage);
+  }
+
+  goToMenu(){
+    this.navCtrl.push(MenuPage);
+  }
 
 }

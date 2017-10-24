@@ -8,7 +8,7 @@
   
   
   <ion-content padding>
-    <form (submit)="doLogin()" padding>
+    <!-- <form (submit)="doLogin()" padding> -->
       <ion-list>
   
         <ion-item>
@@ -21,11 +21,11 @@
         </ion-item>
   
         <div padding>
-          <button ion-button color="primary" block>Entrar</button>
-          <p class="center">Não é usuário? <strong (click)="goToCadastroPage()">Inscreva-se</strong></p>
+          <button ion-button color="primary" block (click)="goToMenu()">Entrar</button>
+          <p class="center">Não é usuário? <strong (click)="goToCadastro()">Inscreva-se</strong></p>
         </div>
         
       </ion-list>
-    </form>
+    <!-- </form> -->
   </ion-content>
   

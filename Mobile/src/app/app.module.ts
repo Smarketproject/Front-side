@@ -29,9 +29,9 @@ import { HttpModule } from '@angular/http';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    LoginPage,
     MenuPage,
-    CadastroPage,
-    LoginPage
+    CadastroPage
     
   ],
   providers: [
