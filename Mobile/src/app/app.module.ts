@@ -15,9 +15,6 @@ import { RestProvider } from '../providers/rest/rest';
 import { HttpModule } from '@angular/http';
 
 
-import { NgxQRCodeModule } from 'ngx-qrcode2';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
-import { AppMaskerModule } from 'brmasker-ionic';
 
 @NgModule({
   declarations: [
@@ -32,8 +29,6 @@ import { AppMaskerModule } from 'brmasker-ionic';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
-    NgxQRCodeModule,
-    AppMaskerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -49,7 +44,6 @@ import { AppMaskerModule } from 'brmasker-ionic';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider,
-    BarcodeScanner
   ]
 })
 export class AppModule {}

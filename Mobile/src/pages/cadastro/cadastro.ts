@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {Md5} from 'ts-md5/dist/md5';
 import { RestProvider } from '../../providers/rest/rest';
 
 @IonicPage()
@@ -37,7 +36,7 @@ export class CadastroPage {
       name: this.account.name,
       email: this.account.email,
       cpf: this.account.cpf,
-      password: Md5.hashStr(this.account.password)
+      password: this.account.password
     }
     this.rest.postCadastro(data)
       .subscribe(data=>{
