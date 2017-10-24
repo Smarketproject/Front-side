@@ -21,12 +21,20 @@ export class LoginPage {
     
   }
 
+  //Vai para a página de cadastro
   goToCadastro(){
     this.navCtrl.push(CadastroPage);
   }
 
+  //Vai para a página de menu
   goToMenu(){
     this.navCtrl.setRoot(MenuPage);
   }
 
+  doSignin(){
+    this.rest.postLogin(this.account)
+      .subscribe(data=>{
+        console.log(data);
+      });
+  }
 }

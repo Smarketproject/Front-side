@@ -11,28 +11,39 @@
   
   
   <ion-content padding>
-    <form (submit)="doSignup()" padding>
+    <!-- <form (submit)="" padding> -->
       <ion-list>
   
         <ion-item>
-          <ion-label fixed>Nome</ion-label>
-          <ion-input type="text"  name="name"></ion-input>
+          <ion-label floating>Nome:</ion-label>
+          <ion-input type="text"  name="name" [(ngModel)]="account.name" float></ion-input>
         </ion-item>
   
         <ion-item>
-          <ion-label floate>E-mail</ion-label>
-          <ion-input type="email"  name="email"></ion-input>
+          <ion-label floating>E-mail:</ion-label>
+          <ion-input type="email"  name="email" [(ngModel)]="account.email"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label floate>Senha:</ion-label>
-          <ion-input type="password"  name="password"></ion-input>
+          <ion-label floating>CPF:</ion-label>
+          <ion-input type="text"  name="cpf" [(ngModel)]="account.cpf" 
+                  [brmasker]="{mask:'000.000.000-00', len:14}"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Senha:</ion-label>
+          <ion-input type="password"  name="password" [(ngModel)]="account.password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Confirmação:</ion-label>
+          <ion-input type="password"  name="confirm" [(ngModel)]="account.confirm"></ion-input>
         </ion-item>
   
         <div padding>
-          <button ion-button color="primary" block>Cadastrar</button>
+          <button ion-button color="primary" block (click)="doSignup()">Cadastrar</button>
         </div>
   
       </ion-list>
-    </form>
+    <!-- </form> -->
   </ion-content>

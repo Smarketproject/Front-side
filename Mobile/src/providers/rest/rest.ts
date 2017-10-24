@@ -11,31 +11,26 @@ export class RestProvider {
     
   }
 
-  getTeste(){
-    var path = "ip";
-    return this.getRequest(path);
+  //Requisição para cadastro
+  postCadastro(data:any){
+    var path = "user";
+    return this.postRequest(path, data);
   }
 
-  postTeste(){
-    var path = "post";
-    var data = {
-      nome: 'Alvaro',
-      sobrenome: 'Santos',
-      idade: '25'
-    }
+  //Requisição para cadastro
+  postLogin(data:any){
+    var path = "";//?
     return this.postRequest(path, data);
   }
 
   //Método base para qualquer requisição get, retorna uma respota em json
   private getRequest(path:string){
-    var retorno:any;
     return this.http.get(this.url + path)
       .map(res => res.json());
   }
 
   //Método base para qualquer requisição post, retorna uma respota em json
   private postRequest(path:string, data:any){
-    var retorno:any;
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let options = new RequestOptions({headers : headers});

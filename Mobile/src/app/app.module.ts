@@ -17,6 +17,8 @@ import { HttpModule } from '@angular/http';
 
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { AppMaskerModule } from 'brmasker-ionic';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -30,7 +32,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    AppMaskerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
