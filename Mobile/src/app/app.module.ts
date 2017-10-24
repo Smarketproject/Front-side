@@ -8,15 +8,15 @@ import { MyApp } from './app.component';
 import { MenuPage } from '../pages/menu/menu';
 import { CadastroPage } from '../pages/cadastro/cadastro';
 import { LoginPage } from '../pages/login/login';
+import { CarrinhoPage } from '../pages/carrinho/carrinho';
+import { HistoricoPage } from '../pages/historico/historico';
+
 import { RestProvider } from '../providers/rest/rest';
 import { HttpModule } from '@angular/http';
 
 
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
-import { CarrinhoPage } from '../pages/carrinho/carrinho';
-import { HistoricoPage } from '../pages/historico/historico';
-
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 @NgModule({
   declarations: [
     MyApp,

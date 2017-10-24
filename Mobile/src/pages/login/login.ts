@@ -26,7 +26,7 @@ export class LoginPage {
   }
 
   goToMenu(){
-    this.navCtrl.push(MenuPage);
+    this.navCtrl.setRoot(MenuPage);
   }
 
 }
