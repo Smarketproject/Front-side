@@ -12,6 +12,10 @@ import { RestProvider } from '../providers/rest/rest';
 import { HttpModule } from '@angular/http';
 
 
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { CarrinhoPage } from '../pages/carrinho/carrinho';
+import { HistoricoPage } from '../pages/historico/historico';
 
 @NgModule({
   declarations: [
@@ -19,26 +23,30 @@ import { HttpModule } from '@angular/http';
     MenuPage,
     CadastroPage,
     LoginPage,
-    
+    CarrinhoPage,
+    HistoricoPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
+    NgxQRCodeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     LoginPage,
     MenuPage,
-    CadastroPage
-    
+    CadastroPage,
+    CarrinhoPage,
+    HistoricoPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider
+    RestProvider,
+    BarcodeScanner
   ]
 })
 export class AppModule {}
