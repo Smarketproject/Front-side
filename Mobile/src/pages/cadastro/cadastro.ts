@@ -9,7 +9,7 @@ import { RestProvider } from '../../providers/rest/rest';
 })
 export class CadastroPage {
   account ={
-    name: "",
+    username: "",
     email: "",
     cpf: "",
     password: "",
@@ -33,7 +33,7 @@ export class CadastroPage {
   
   private doRequest(){
     var data = {
-      name: this.account.name,
+      username: this.account.username,
       email: this.account.email,
       cpf: this.account.cpf,
       password: this.account.password

@@ -5,8 +5,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class RestProvider {
-  private url:string = "http://httpbin.org/";//Url sem o caminho para os recursos da api
-  // private url:string = "http://127.0.0.1:8000/";//Url sem o caminho para os recursos da api
+  private url:string = "http://127.0.0.1:8000/";//Url sem o caminho para os recursos da api
   constructor(public http: Http) {
     
   }
