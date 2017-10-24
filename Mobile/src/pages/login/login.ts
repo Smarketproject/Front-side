@@ -8,6 +8,7 @@ import { RestProvider } from '../../providers/rest/rest';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  public resposta:Array<{}>;
   account = {
     email: "",
     password: "",
@@ -17,8 +18,6 @@ export class LoginPage {
 
   ionViewDidLoad() {
     
-  }
-
+  } 
   
-
 }
