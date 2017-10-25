@@ -1,0 +1,48 @@
+<ion-header>
+  
+    <ion-navbar>
+      <div>
+        <ion-title>Cadastro</ion-title>
+      </div>
+      
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <form (submit)="doSignup()" padding>
+      <ion-list>
+  
+        <ion-item>
+          <ion-label floating>Nome:</ion-label>
+          <ion-input type="text"  name="name" [(ngModel)]="account.username" ></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label floating>E-mail:</ion-label>
+          <ion-input type="email"  name="email" [(ngModel)]="account.email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>CPF:</ion-label>
+          <ion-input type="text"  name="cpf" [(ngModel)]="account.cpf"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Senha:</ion-label>
+          <ion-input type="password"  name="password" [(ngModel)]="account.password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Confirmação:</ion-label>
+          <ion-input type="password"  name="confirm" [(ngModel)]="account.confirm"></ion-input>
+        </ion-item>
+  
+        <div padding>
+          <button ion-button color="primary" block >Cadastrar</button>
+        </div>
+  
+      </ion-list>
+    </form>
+  </ion-content>

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar id="navbar">
+      <img src="../assets/imgs/logo">
+  </ion-navbar>
+</ion-header>>
+  
+  
+  <ion-content padding>
+    <form (submit)="doSignin()" padding>
+      <ion-list>
+  
+        <ion-item>
+          <ion-label floating>Nome</ion-label>
+          <ion-input type="name" [(ngModel)]="account.username" name="username"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Senha</ion-label>
+          <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+        </ion-item>
+  
+        <div padding>
+          <button ion-button color="primary" block>Entrar</button>
+          <p class="center">Não é usuário? <strong (click)="goToCadastro()">Inscreva-se</strong></p>
+        </div>
+        
+      </ion-list>
+    </form>
+  </ion-content>
+  
