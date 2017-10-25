@@ -1,4 +1,4 @@
-page-login {
+page-menu {
     
     .toolbar-background {
             background-color: rgb(144, 144, 144);
@@ -31,9 +31,29 @@ page-login {
     .button{
         margin-top:20px;
         background-color: rgb(144, 144, 144);
-        width: 100%;
+        width: 95%;
         font-weight: bold;
-        margin-top: 30px;    
+        align-content: center;
     
     }
-}
+    .item{
+        background-color: orange;
+    }
+    #botões{
+        margin-top: 40px;
+    }
+    #sair{
+        align-content: center;
+        margin-top: 120px;
+    }
+    #botão_sair
+    {
+        align-content: center;
+        text-align: center;
+    }
+    #avatar{
+        margin-top: 5px;
+    }
+    
+    
+    }

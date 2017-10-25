@@ -5,8 +5,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
+import { MenuPage } from '../pages/menu/menu';
 import { CadastroPage } from '../pages/cadastro/cadastro';
 import { LoginPage } from '../pages/login/login';
+import { CarrinhoPage } from '../pages/carrinho/carrinho';
+import { HistoricoPage } from '../pages/historico/historico';
+
 import { RestProvider } from '../providers/rest/rest';
 import { HttpModule } from '@angular/http';
 
@@ -15,27 +19,31 @@ import { HttpModule } from '@angular/http';
 @NgModule({
   declarations: [
     MyApp,
+    MenuPage,
     CadastroPage,
     LoginPage,
-    
+    CarrinhoPage,
+    HistoricoPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    LoginPage,
+    MenuPage,
     CadastroPage,
-    LoginPage
-    
+    CarrinhoPage,
+    HistoricoPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider
+    RestProvider,
   ]
 })
 export class AppModule {}

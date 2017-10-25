@@ -5,31 +5,32 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class RestProvider {
-  private url:string = "http://httpbin.org/";//Url sem o caminho para os recursos da api
-  // private url:string = "http://127.0.0.1:8000/";//Url sem o caminho para os recursos da api
+  private url:string = "http://127.0.0.1:8000/";//Url sem o caminho para os recursos da api
   constructor(public http: Http) {
     
   }
 
-  getTeste(){
-    var path = "ip";
-    return this.getRequest(path);
+  //Requisição para cadastro
+  postCadastro(data:any){
+    var path = "post";
+    return this.postRequest(path, data);
   }
 
-  postTeste(){
-    var path = "post";
-    var data = {
-      nome: 'Alvaro',
-      sobrenome: 'Santos',
-      idade: '25'
-    }
+  //Requisição para cadastro
+  postLogin(data:any){
+    var path = "login";
     return this.postRequest(path, data);
   }
 
   //Método base para qualquer requisição get, retorna uma respota em json
   private getRequest(path:string){
+<<<<<<< HEAD
     return this.http.get(this.url + path)
       .map(res => res.json())
+=======
+    return this.http.get(this.url + path + "/")
+      .map(res => res.json());
+>>>>>>> menu
   }
 
   //Método base para qualquer requisição post, retorna uma respota em json
@@ -37,8 +38,13 @@ export class RestProvider {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let options = new RequestOptions({headers : headers});
+<<<<<<< HEAD
     return this.http.post(this.url + path, data, options)
         .map(res => res.json())
+=======
+    return this.http.post(this.url + path + "/", data, options)
+        .map(res => res.json());
+>>>>>>> menu
   }
 
 }
