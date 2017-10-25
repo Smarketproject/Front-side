@@ -12,7 +12,7 @@ export class RestProvider {
 
   //Requisição para cadastro
   postCadastro(data:any){
-    var path = "post";
+    var path = "user";
     return this.postRequest(path, data);
   }
 
@@ -24,13 +24,8 @@ export class RestProvider {
 
   //Método base para qualquer requisição get, retorna uma respota em json
   private getRequest(path:string){
-<<<<<<< HEAD
-    return this.http.get(this.url + path)
-      .map(res => res.json())
-=======
     return this.http.get(this.url + path + "/")
       .map(res => res.json());
->>>>>>> menu
   }
 
   //Método base para qualquer requisição post, retorna uma respota em json
@@ -38,13 +33,8 @@ export class RestProvider {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let options = new RequestOptions({headers : headers});
-<<<<<<< HEAD
-    return this.http.post(this.url + path, data, options)
-        .map(res => res.json())
-=======
     return this.http.post(this.url + path + "/", data, options)
         .map(res => res.json());
->>>>>>> menu
   }
 
 }
