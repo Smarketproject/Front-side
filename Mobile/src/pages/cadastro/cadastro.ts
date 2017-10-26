@@ -20,8 +20,7 @@ export class CadastroPage {
     public navCtrl: NavController, 
     public navParams: NavParams, 
     public rest: RestProvider,
-    public form: FormProvider,
-    public toastCtrl: ToastController
+    public form: FormProvider
   ) {
   }
 
@@ -34,7 +33,7 @@ export class CadastroPage {
     if(validation){
       this.doRequest();
     }else{
-      this.form.presentToast(this.toastCtrl, "Senhas diferentes"); 
+      this.form.presentToast("Senhas diferentes"); 
     }
   }
 
@@ -48,6 +47,10 @@ export class CadastroPage {
     this.rest.postCadastro(data)
       .subscribe(data=>{
         console.log(data);
+      }, error =>{
+        console.log(error + "(erro)");
+      },() =>{
+        
       });
   }
 

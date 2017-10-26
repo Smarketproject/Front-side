@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { ToastController, LoadingController, Loading } from 'ionic-angular';
 
+   
 /*
   Generated class for the FormProvider provider.
 
@@ -9,7 +11,10 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class FormProvider {
   
-  constructor() {
+  constructor(
+    public toastCtrl: ToastController,
+    public loadingCtrl: LoadingController
+  ) {
     
   }
   //Tamanho do input cpf
@@ -34,6 +39,7 @@ export class FormProvider {
 
   //Método para mascarar o cpf
   public cpfMask(cpf:string):string{
+    cpf = this.removeLetterInput(cpf);
     var unmasked:string = this.cpfUnmask(cpf);
     var masked = "";
 
@@ -62,6 +68,30 @@ export class FormProvider {
     return unmasked;
   }
 
+  //Remove o número do input
+  private removeNumberInput(string:string){
+    let length = string.length;
+    let input = string.charAt(length - 1);
+    if(!isNaN(parseInt(input))){
+      console.log("numero!");
+      if(length == 1)
+        return "";
+      string = string.substring(0, length - 2);
+    }
+  }
+
+  //Remove o número do input
+  private removeLetterInput(string:string){
+    let length = string.length;
+    let input = string.charAt(length - 1);
+    if(isNaN(parseInt(input))){
+      console.log(input);
+      if(length == 1)
+        return "";
+      string = string.substring(0, length - 1);
+    }
+    return string;
+  }
   //Valida a senha com a confirmação
   public passwordValidation(password, confirm){
     if(password == confirm){
@@ -69,12 +99,13 @@ export class FormProvider {
     }
     return false;
   }
-
-  presentToast(toastCtrl, message) {
-    let toast = toastCtrl.create({
-      message: message,
-      duration: 3000
-    });
-    toast.present();
+  public presentToast(message) {
+      let toast = this.toastCtrl.create({
+        message: message,
+        duration: 3000
+      });
+      toast.present();
   }
+  
+  
 }

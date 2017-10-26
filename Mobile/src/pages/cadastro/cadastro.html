@@ -11,33 +11,33 @@
 
 
 <ion-content padding>
-  <form (submit)="doSignup()" padding>
+  <form (submit)="doSignup()" name="form"padding>
     <ion-list>
 
       <ion-item>
         <ion-label floating>Nome:</ion-label>
-        <ion-input type="text" name="username" [(ngModel)]="account.username" maxlength="{{this.form.usernameLength()}}"></ion-input>
+        <ion-input type="text" name="username" [(ngModel)]="account.username" maxlength="{{this.form.usernameLength()}}" required></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>E-mail:</ion-label>
-        <ion-input type="email" name="email" [(ngModel)]="account.email" maxlength="{{this.form.emailLength()}}"></ion-input>
+        <ion-input type="email" name="email" [(ngModel)]="account.email" maxlength="{{this.form.emailLength()}}" ></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>CPF:</ion-label>
         <ion-input type="text" name="cpf" [(ngModel)]="account.cpf" (keyup)="this.account.cpf = this.form.cpfMask(this.account.cpf)"
-          maxlength="{{this.form.cpfLength()}}"></ion-input>
+          maxlength="{{this.form.cpfLength()}}" ></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Senha:</ion-label>
-        <ion-input type="password" name="password" [(ngModel)]="account.password" maxlength="{{this.form.passwordLength()}}"></ion-input>
+        <ion-input type="password" name="password" [(ngModel)]="account.password" maxlength="{{this.form.passwordLength()}}" ></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Confirmação:</ion-label>
-        <ion-input type="password" name="confirm" [(ngModel)]="account.confirm" maxlength="{{this.form.passwordLength()}}"></ion-input>
+        <ion-input type="password" name="confirm" [(ngModel)]="account.confirm" maxlength="{{this.form.passwordLength()}}" ></ion-input>
       </ion-item>
 
       <div padding>
