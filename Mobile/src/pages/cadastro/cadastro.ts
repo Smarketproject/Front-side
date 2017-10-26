@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
+import { FormProvider } from '../../providers/form/form';
 
 @IonicPage()
 @Component({
@@ -15,7 +16,12 @@ export class CadastroPage {
     password: "",
     confirm:""
   }
-  constructor(public navCtrl: NavController, public navParams: NavParams, public rest: RestProvider) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public rest: RestProvider,
+    public form: FormProvider
+  ) {
   }
 
   ionViewDidLoad() {
@@ -23,31 +29,29 @@ export class CadastroPage {
   }
 
   doSignup(){
-    var validation = this.passwordValidation(this.account.password,this.account.confirm);
+    var validation = this.form.passwordValidation(this.account.password,this.account.confirm);
     if(validation){
       this.doRequest();
     }else{
-      //mostrar mensagem de erro 
+      this.form.presentToast("Senhas diferentes"); 
     }
   }
-  
+
   private doRequest(){
     var data = {
       username: this.account.username,
       email: this.account.email,
-      cpf: this.account.cpf,
+      cpf: this.form.cpfUnmask,
       password: this.account.password
     }
     this.rest.postCadastro(data)
       .subscribe(data=>{
         console.log(data);
+      }, error =>{
+        console.log(error + "(erro)");
+      },() =>{
+        
       });
   }
 
-  private passwordValidation(password, confirm){
-    if(password == confirm){
-      return true;
-    }
-    return false;
-  }
 }
