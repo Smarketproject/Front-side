@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 
 
 @IonicPage()
@@ -10,6 +10,9 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 })
 export class CarrinhoPage {
 
+  options: BarcodeScannerOptions;
+  results: {};
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private barcodeScanner: BarcodeScanner) {
   }
@@ -18,12 +21,10 @@ export class CarrinhoPage {
     console.log('ionViewDidLoad CarrinhoPage');
   }
   
-  getcode(){
-    this.barcodeScanner.scan().then((barcodeData) => {
-    // Success! Barcode data is here
-   }, (err) => {
-       // An error occurred
-   });
+  async scanBarcode(){
+    this.results = await this.barcodeScanner.scan();
+    console.log(this.results);
+   
  }
 
 }

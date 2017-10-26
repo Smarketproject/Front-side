@@ -8,10 +8,16 @@
 <ion-content>
   
   
-    <button ion-button icon-left (click)="getcode()">
+    <button ion-button icon-left (click)="scanBarcode()">
       <ion-icon name="qr-scanner"></ion-icon>
        Adicionar Produto
     </button>
+
+    <div *ngIf="results">
+      <p>{{results.text}}</p>
+      <p>{{results.format}}</p>
+      <p>{{results.cancelled}}</p>
+    </div>
   
 
 <ion-grid>
