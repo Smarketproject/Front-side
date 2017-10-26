@@ -13,6 +13,7 @@ import { HistoricoPage } from '../pages/historico/historico';
 
 import { RestProvider } from '../providers/rest/rest';
 import { HttpModule } from '@angular/http';
+import { FormProvider } from '../providers/form/form';
 
 
 
@@ -44,6 +45,7 @@ import { HttpModule } from '@angular/http';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider,
+    FormProvider,
   ]
 })
 export class AppModule {}

@@ -11,11 +11,11 @@
   
         <ion-item>
           <ion-label floating>Nome</ion-label>
-          <ion-input type="name" [(ngModel)]="account.username" name="username"></ion-input>
+          <ion-input type="name" [(ngModel)]="account.username" name="username" maxlength="{{this.form.usernameLength()}}"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label floating>Senha</ion-label>
-          <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+          <ion-input type="password" [(ngModel)]="account.password" name="password" maxlength="{{this.form.passwordLength()}}"></ion-input>
         </ion-item>
   
         <div padding>

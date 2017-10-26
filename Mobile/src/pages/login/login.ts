@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { CadastroPage } from '../cadastro/cadastro';
 import { MenuPage } from '../menu/menu';
+import { FormProvider } from '../../providers/form/form';
 
 @IonicPage()
 @Component({
@@ -15,11 +16,16 @@ export class LoginPage {
     username: "",
     password: "",
   }
-  constructor(public navCtrl: NavController, public navParams: NavParams, public rest: RestProvider) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public rest: RestProvider,
+    public form: FormProvider
+  ) {
+  
   }
 
   ionViewDidLoad() {
-    
   }
 
   //Vai para a página de cadastro
