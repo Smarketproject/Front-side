@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar id="navbar">
-      <img src="../assets/imgs/logo">
+      <img src="assets/imgs/smarket">
   </ion-navbar>
 </ion-header>>
   
@@ -19,7 +19,7 @@
         </ion-item>
   
         <div padding>
-          <button ion-button color="primary" block>Entrar</button>
+          <button ion-button color="primary" (click)="goToMenu()" block>Entrar</button>
           <p class="center">Não é usuário? <strong (click)="goToCadastro()">Inscreva-se</strong></p>
         </div>
         

@@ -3,6 +3,8 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+
 
 import { MyApp } from './app.component';
 import { MenuPage } from '../pages/menu/menu';
@@ -25,6 +27,7 @@ import { FormProvider } from '../providers/form/form';
     LoginPage,
     CarrinhoPage,
     HistoricoPage
+    
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { FormProvider } from '../providers/form/form';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider,
     FormProvider,
+    BarcodeScanner
   ]
 })
 export class AppModule {}
