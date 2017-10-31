@@ -6,20 +6,25 @@
   
   
   <ion-content padding>
-    <form (submit)="doSignin()" padding>
+    <form [formGroup]="loginForm"(ngSubmit)="submitForm(loginForm.value)" padding>
       <ion-list>
   
         <ion-item>
           <ion-label floating>Nome</ion-label>
-          <ion-input type="name" [(ngModel)]="account.username" name="username" maxlength="{{this.form.usernameLength()}}"></ion-input>
+          <ion-input type="text" value=""[formControl]="loginForm.controls['username']" 
+            [ngClass]="{'error-border':!loginForm.controls['username'].valid}" ></ion-input>
         </ion-item>
+        <div class="error-box" *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">Nome é necessário</div>
+        
         <ion-item>
           <ion-label floating>Senha</ion-label>
-          <ion-input type="password" [(ngModel)]="account.password" name="password" maxlength="{{this.form.passwordLength()}}"></ion-input>
+          <ion-input type="password" value=""[formControl]="loginForm.controls['password']" 
+            [ngClass]="{'error-border':!loginForm.controls['password'].valid}" ></ion-input>
         </ion-item>
-  
+        <div class="error-box" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Senha é necessária</div>
+        
         <div padding>
-          <button ion-button color="primary" (click)="goToMenu()" block>Entrar</button>
+          <button ion-button color="primary" [disabled]="!loginForm.valid" block>Entrar</button>
           <p class="center">Não é usuário? <strong (click)="goToCadastro()">Inscreva-se</strong></p>
         </div>
         
