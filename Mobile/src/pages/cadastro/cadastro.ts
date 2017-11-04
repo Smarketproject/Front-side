@@ -1,57 +1,72 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { RestProvider } from '../../providers/rest/rest';
 import { FormProvider } from '../../providers/form/form';
 
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { PasswordValidator } from '../../validators/password';
+import { CpfValidator } from '../../validators/cpf';
+import { RestProvider } from '../../providers/rest/rest';
 @IonicPage()
 @Component({
   selector: 'page-cadastro',
   templateUrl: 'cadastro.html',
 })
 export class CadastroPage {
-  account ={
-    username: "",
-    email: "",
-    cpf: "",
-    password: "",
-    confirm:""
-  }
+  cadastroForm: FormGroup;
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    public rest: RestProvider,
-    public form: FormProvider
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private formBuilder: FormBuilder,
+    public form: FormProvider,
+    public rest: RestProvider
   ) {
+    this.cadastroForm = formBuilder.group({
+      'username': [
+        '',
+        Validators.required
+      ],
+      'email': [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')
+        ])
+      ],
+      'cpf': [
+        '',
+        Validators.compose([
+          Validators.required,
+          CpfValidator.isValid
+        ])
+      ],
+      'password': [
+        '',
+        Validators.required
+      ],
+      'confirm': [
+        '',
+        Validators.required
+      ]
+    },{'validator': PasswordValidator.isEqual});
   }
 
   ionViewDidLoad() {
     
   }
-
-  doSignup(){
-    var validation = this.form.passwordValidation(this.account.password,this.account.confirm);
-    if(validation){
-      this.doRequest();
-    }else{
-      this.form.presentToast("Senhas diferentes"); 
+  submitForm(value: any): void {
+    let data = {
+      'cpf': value.cpf,
+      'email': value.email,
+      'password': value.password,
+      'username': value.username
     }
-  }
-
-  private doRequest(){
-    var data = {
-      username: this.account.username,
-      email: this.account.email,
-      cpf: this.form.cpfUnmask,
-      password: this.account.password
-    }
-    this.rest.postCadastro(data)
-      .subscribe(data=>{
-        console.log(data);
-      }, error =>{
-        console.log(error + "(erro)");
-      },() =>{
-        
-      });
+    console.log('Formulário enviado!');
+    console.log(data);
+    this.rest.postCadastro(value).subscribe(data=>{
+      console.log(data);
+    }, error=>{
+      console.log(error);
+    }); 
   }
 
 }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
-import { CarrinhoPage } from '../carrinho/carrinho';
 import { HistoricoPage } from '../historico/historico';
 
 @IonicPage()
@@ -18,10 +17,7 @@ export class MenuPage {
     
   }
 
-  //Vai para a página do carrinho
-  goToCarrinho(){
-    this.navCtrl.push(CarrinhoPage);
-  }
+  
   //Vai para a página do histórico
   goToHistorico(){
     this.navCtrl.push(HistoricoPage);

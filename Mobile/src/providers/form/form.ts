@@ -73,7 +73,6 @@ export class FormProvider {
     let length = string.length;
     let input = string.charAt(length - 1);
     if(!isNaN(parseInt(input))){
-      console.log("numero!");
       if(length == 1)
         return "";
       string = string.substring(0, length - 2);
@@ -85,7 +84,6 @@ export class FormProvider {
     let length = string.length;
     let input = string.charAt(length - 1);
     if(isNaN(parseInt(input))){
-      console.log(input);
       if(length == 1)
         return "";
       string = string.substring(0, length - 1);

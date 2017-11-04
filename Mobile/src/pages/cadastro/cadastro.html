@@ -11,39 +11,43 @@
 
 
 <ion-content padding>
-  <form (submit)="doSignup()" name="form"padding>
-    <ion-list>
+  <form [formGroup]="cadastroForm" (ngSubmit)="submitForm(cadastroForm.value)" padding>
+    <!-- <ion-list> -->
 
-      <ion-item>
-        <ion-label floating>Nome:</ion-label>
-        <ion-input type="text" name="username" [(ngModel)]="account.username" maxlength="{{this.form.usernameLength()}}" required></ion-input>
+      <ion-item [ngClass]="{'error-border':(cadastroForm.controls['username'].touched) && (!cadastroForm.controls['username'].valid)}">
+        <ion-label floating>Nome</ion-label>
+        <ion-input type="text" [formControl]="cadastroForm.controls['username']">
+        </ion-input>
       </ion-item>
-
-      <ion-item>
-        <ion-label floating>E-mail:</ion-label>
-        <ion-input type="email" name="email" [(ngModel)]="account.email" maxlength="{{this.form.emailLength()}}" ></ion-input>
+      
+      <ion-item [ngClass]="{'error-border':(cadastroForm.controls['email'].touched) && (!cadastroForm.controls['email'].valid)}">
+        <ion-label floating>E-mail</ion-label>
+        <ion-input type="email" [formControl]="cadastroForm.controls['email']"></ion-input>
       </ion-item>
-
-      <ion-item>
-        <ion-label floating>CPF:</ion-label>
-        <ion-input type="text" name="cpf" [(ngModel)]="account.cpf" (keyup)="this.account.cpf = this.form.cpfMask(this.account.cpf)"
-          maxlength="{{this.form.cpfLength()}}" ></ion-input>
+      <p class="form-error" *ngIf="cadastroForm.controls['email'].hasError('pattern') && cadastroForm.controls['email'].touched && cadastroForm.controls['email'].valueChanges">E-mail inválido!</p>
+      
+      <ion-item [ngClass]="{'error-border':(cadastroForm.controls['cpf'].touched) && (!cadastroForm.controls['cpf'].valid)}">
+        <ion-label floating>CPF</ion-label>
+        <ion-input type="text" maxLength="14"[formControl]="cadastroForm.controls['cpf']" [ngModel]="cadastroForm.value.cpf"
+        (keyup)="cadastroForm.value.cpf = this.form.cpfMask(cadastroForm.value.cpf)"></ion-input>
       </ion-item>
-
-      <ion-item>
-        <ion-label floating>Senha:</ion-label>
-        <ion-input type="password" name="password" [(ngModel)]="account.password" maxlength="{{this.form.passwordLength()}}" ></ion-input>
+      <p class="form-error" *ngIf="cadastroForm.controls['cpf'].hasError('isValid') && cadastroForm.controls['cpf'].dirty">Cpf inválido!</p>
+      
+      <ion-item [ngClass]="{'error-border':(cadastroForm.controls['password'].touched) && (!cadastroForm.controls['password'].valid)}">
+        <ion-label floating>Senha</ion-label>
+        <ion-input type="password" [formControl]="cadastroForm.controls['password']"></ion-input>
       </ion-item>
-
-      <ion-item>
-        <ion-label floating>Confirmação:</ion-label>
-        <ion-input type="password" name="confirm" [(ngModel)]="account.confirm" maxlength="{{this.form.passwordLength()}}" ></ion-input>
+      
+      <ion-item [ngClass]="{'error-border':(cadastroForm.controls['confirm'].touched) && (!cadastroForm.controls['confirm'].valid)}">
+        <ion-label floating>Confirmação</ion-label>
+        <ion-input type="password" [formControl]="cadastroForm.controls['confirm']"></ion-input>    
       </ion-item>
-
+      <p class="form-error" *ngIf="cadastroForm.controls['confirm'].hasError('isEqual') && cadastroForm.controls['confirm'].touched">Senhas diferentes!</p>
+      
+        
       <div padding>
-        <button ion-button color="primary" block>Cadastrar</button>
+        <button ion-button color="primary" [disabled]="!cadastroForm.valid" block>Entrar</button>
       </div>
 
-    </ion-list>
   </form>
 </ion-content>

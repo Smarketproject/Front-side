@@ -35,13 +35,14 @@ export class LoginPage {
       'password' : [
         null, 
         Validators.compose([
-          Validators.required,
+          Validators.required
         ])
       ]
     });
   }
 
   ionViewDidLoad() {
+    
   }
 
   //Vai para a página de cadastro
@@ -57,11 +58,11 @@ export class LoginPage {
   submitForm(value:any){
     console.log('Formulário enviado!');
     console.log(value);
+    this.rest.postLogin(value).subscribe(data=>{
+      console.log(data);
+    },error=>{
+      console.log(error);
+    });
   }
-  // doSignin(){
-  //   this.rest.postLogin(this.account)
-  //     .subscribe(data=>{
-  //       console.log(data);
-  //     });
-  // }
+  
 }

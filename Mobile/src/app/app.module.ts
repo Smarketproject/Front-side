@@ -3,14 +3,12 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 
 import { MyApp } from './app.component';
 import { MenuPage } from '../pages/menu/menu';
 import { CadastroPage } from '../pages/cadastro/cadastro';
 import { LoginPage } from '../pages/login/login';
-import { CarrinhoPage } from '../pages/carrinho/carrinho';
 import { HistoricoPage } from '../pages/historico/historico';
 
 import { RestProvider } from '../providers/rest/rest';
@@ -25,7 +23,6 @@ import { FormProvider } from '../providers/form/form';
     MenuPage,
     CadastroPage,
     LoginPage,
-    CarrinhoPage,
     HistoricoPage
     
   ],
@@ -40,7 +37,6 @@ import { FormProvider } from '../providers/form/form';
     LoginPage,
     MenuPage,
     CadastroPage,
-    CarrinhoPage,
     HistoricoPage
   ],
   providers: [
@@ -49,7 +45,6 @@ import { FormProvider } from '../providers/form/form';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider,
     FormProvider,
-    BarcodeScanner
   ]
 })
 export class AppModule {}
