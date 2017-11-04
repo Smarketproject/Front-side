@@ -5,6 +5,7 @@ import { CadastroPage } from '../cadastro/cadastro';
 import { MenuPage } from '../menu/menu';
 
 import { FormGroup, FormBuilder, Validators } from "@angular/forms"
+import { FormProvider } from '../../providers/form/form';
 
 
 @IonicPage()
@@ -23,7 +24,8 @@ export class LoginPage {
     public navCtrl: NavController, 
     public navParams: NavParams, 
     public rest: RestProvider,
-    private formBuilder :FormBuilder
+    private formBuilder :FormBuilder,
+    public form: FormProvider
   ) {
     this.loginForm = formBuilder.group({
       'username' : [
@@ -59,9 +61,11 @@ export class LoginPage {
     console.log('Formulário enviado!');
     console.log(value);
     this.rest.postLogin(value).subscribe(data=>{
-      console.log(data);
-    },error=>{
-      console.log(error);
+      console.log('data: ' + data);
+      
+      }, error=>{
+        this.form.presentToast('Senha ou nome incorreto!');
+        console.log('error ' + error._body);
     });
   }
   

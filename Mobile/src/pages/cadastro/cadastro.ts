@@ -55,17 +55,19 @@ export class CadastroPage {
   }
   submitForm(value: any): void {
     let data = {
-      'cpf': value.cpf,
+      'cpf': this.form.cpfUnmask(value.cpf),
       'email': value.email,
       'password': value.password,
       'username': value.username
     }
     console.log('Formulário enviado!');
     console.log(data);
-    this.rest.postCadastro(value).subscribe(data=>{
-      console.log(data);
+    this.rest.postCadastro(data).subscribe(data=>{
+      console.log('data: ' + data._body);
+
     }, error=>{
-      console.log(error);
+      // this.form.presentToast('Senha ou nome incorreto!');
+      console.log('error' + error._body);
     }); 
   }
 
