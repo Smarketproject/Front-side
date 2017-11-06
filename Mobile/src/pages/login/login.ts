@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { CadastroPage } from '../cadastro/cadastro';
 import { MenuPage } from '../menu/menu';
 
 import { FormGroup, FormBuilder, Validators } from "@angular/forms"
+import { FormProvider } from '../../providers/form/form';
 
 
 @IonicPage()
@@ -13,27 +14,25 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms"
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  loginForm : FormGroup;
-  // public resposta:Array<{}>;
-  // account = {
-  //   username: "",
-  //   password: "",
-  // }
+  loginForm: FormGroup;
+
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
     public rest: RestProvider,
-    private formBuilder :FormBuilder
+    private formBuilder: FormBuilder,
+    public loadingCtrl: LoadingController,
+    public form: FormProvider
   ) {
     this.loginForm = formBuilder.group({
-      'username' : [
-        null, 
+      'username': [
+        null,
         Validators.compose([
           Validators.required,
         ])
       ],
-      'password' : [
-        null, 
+      'password': [
+        null,
         Validators.compose([
           Validators.required
         ])
@@ -42,27 +41,35 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    
+
   }
 
   //Vai para a página de cadastro
-  goToCadastro(){
+  goToCadastro() {
     this.navCtrl.push(CadastroPage);
   }
 
   //Vai para a página de menu
-  goToMenu(){
+  goToMenu() {
     this.navCtrl.setRoot(MenuPage);
   }
 
-  submitForm(value:any){
-    console.log('Formulário enviado!');
-    console.log(value);
-    this.rest.postLogin(value).subscribe(data=>{
-      console.log(data);
-    },error=>{
-      console.log(error);
+  submitForm(value: any) {
+    let loading = this.loadingCtrl.create({
+      content: "Validando as credenciais",
     });
+    loading.present();
+    this.rest.postLogin(value).subscribe(
+      data => {
+        // console.log(data);
+        this.goToMenu();
+        loading.dismiss();
+      },
+      error => {
+        // console.log(error);
+        this.form.presentToast('Não foi possível realizar o login.');
+        loading.dismiss();
+      });
   }
-  
+
 }

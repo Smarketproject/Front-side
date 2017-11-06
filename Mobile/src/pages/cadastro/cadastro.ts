@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 import { FormProvider } from '../../providers/form/form';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -18,7 +18,8 @@ export class CadastroPage {
     public navParams: NavParams,
     private formBuilder: FormBuilder,
     public form: FormProvider,
-    public rest: RestProvider
+    public rest: RestProvider,
+    public loadingCtrl: LoadingController
   ) {
     this.cadastroForm = formBuilder.group({
       'username': [
@@ -47,26 +48,37 @@ export class CadastroPage {
         '',
         Validators.required
       ]
-    },{'validator': PasswordValidator.isEqual});
+    }, { 'validator': PasswordValidator.isEqual });
   }
 
   ionViewDidLoad() {
-    
+
   }
   submitForm(value: any): void {
+    let loading = this.loadingCtrl.create({
+      content: "Cadastrando",
+    });
     let data = {
       'cpf': value.cpf,
       'email': value.email,
       'password': value.password,
       'username': value.username
     }
+    loading.present();
     console.log('Formulário enviado!');
     console.log(data);
-    this.rest.postCadastro(value).subscribe(data=>{
-      console.log(data);
-    }, error=>{
-      console.log(error);
-    }); 
+
+    this.rest.postCadastro(value).subscribe(
+      data => {
+        // console.log(data);
+        this.navCtrl.popToRoot();
+        loading.dismiss();
+      },
+      error => {
+        // console.log(error);
+        this.form.presentToast('Ocorreu algum erro no processamento.');
+        loading.dismiss();
+      });
   }
 
 }

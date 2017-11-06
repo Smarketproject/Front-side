@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ToastController, LoadingController, Loading } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 
    
 /*
@@ -13,7 +13,6 @@ export class FormProvider {
   
   constructor(
     public toastCtrl: ToastController,
-    public loadingCtrl: LoadingController
   ) {
     
   }
