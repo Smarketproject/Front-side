@@ -58,9 +58,18 @@ export class LoginPage {
     this.navCtrl.setRoot(MenuPage);
   }
 
-  submitForm(value: any) {
-    let loading = this.loadingCtrl.create({
-      content: "Validando as credenciais",
+    submitForm(value:any){
+        let loading = this.loadingCtrl.create({
+          content: "Validando as credenciais" 
+        });
+    console.log('Formulário enviado!');
+    console.log(value);
+    this.rest.postLogin(value).subscribe(data=>{
+      console.log('data: ' + data);
+      
+      }, error=>{
+        this.form.presentToast('Senha ou nome incorreto!');
+        console.log('error ' + error._body);
     });
     loading.present();
     this.rest.postLogin(value).subscribe(
