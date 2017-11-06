@@ -20,8 +20,12 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public rest: RestProvider,
+<<<<<<< HEAD
     private formBuilder: FormBuilder,
     public loadingCtrl: LoadingController,
+=======
+    private formBuilder :FormBuilder,
+>>>>>>> dee56a63f426e2213392e001530ffe4fb5f639dc
     public form: FormProvider
   ) {
     this.loginForm = formBuilder.group({
@@ -54,9 +58,21 @@ export class LoginPage {
     this.navCtrl.setRoot(MenuPage);
   }
 
+<<<<<<< HEAD
   submitForm(value: any) {
     let loading = this.loadingCtrl.create({
       content: "Validando as credenciais",
+=======
+  submitForm(value:any){
+    console.log('Formulário enviado!');
+    console.log(value);
+    this.rest.postLogin(value).subscribe(data=>{
+      console.log('data: ' + data);
+      
+      }, error=>{
+        this.form.presentToast('Senha ou nome incorreto!');
+        console.log('error ' + error._body);
+>>>>>>> dee56a63f426e2213392e001530ffe4fb5f639dc
     });
     loading.present();
     this.rest.postLogin(value).subscribe(
