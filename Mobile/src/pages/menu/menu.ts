@@ -11,6 +11,7 @@ import { HistoricoPage } from '../historico/historico';
 export class MenuPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log(this.navParams.get('token'));
   }
 
   ionViewDidLoad() {

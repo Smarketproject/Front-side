@@ -20,12 +20,8 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public rest: RestProvider,
-<<<<<<< HEAD
     private formBuilder: FormBuilder,
     public loadingCtrl: LoadingController,
-=======
-    private formBuilder :FormBuilder,
->>>>>>> dee56a63f426e2213392e001530ffe4fb5f639dc
     public form: FormProvider
   ) {
     this.loginForm = formBuilder.group({
@@ -54,35 +50,37 @@ export class LoginPage {
   }
 
   //Vai para a página de menu
-  goToMenu() {
-    this.navCtrl.setRoot(MenuPage);
+  goToMenu(token) {
+    this.navCtrl.setRoot(
+      MenuPage,
+      {
+        token: token 
+      });
   }
 
     submitForm(value:any){
-        let loading = this.loadingCtrl.create({
-          content: "Validando as credenciais" 
-        });
-    console.log('Formulário enviado!');
-    console.log(value);
-    this.rest.postLogin(value).subscribe(data=>{
-      console.log('data: ' + data);
-      
-      }, error=>{
-        this.form.presentToast('Senha ou nome incorreto!');
-        console.log('error ' + error._body);
-    });
-    loading.present();
-    this.rest.postLogin(value).subscribe(
-      data => {
-        // console.log(data);
-        this.goToMenu();
-        loading.dismiss();
-      },
-      error => {
-        // console.log(error);
-        this.form.presentToast('Não foi possível realizar o login.');
-        loading.dismiss();
+      let loading = this.loadingCtrl.create({
+        content: "Validando as credenciais" 
       });
+    
+      loading.present();
+      this.rest.postLogin(value).subscribe(
+        data => {
+          // console.log(data);
+          this.goToMenu(data.auth_token);
+          loading.dismiss();
+        },
+        error => {
+          // console.log(error);
+          if(error.status == 400){
+            this.form.presentToast('Nome ou senha incorreto!');
+          }
+
+          if(error.status == 0){
+            this.form.presentToast('Não foi possível realizar o login, tente mais tarde.');
+          }
+          loading.dismiss();
+        });
   }
 
 }

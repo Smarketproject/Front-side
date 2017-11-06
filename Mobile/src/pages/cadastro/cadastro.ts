@@ -65,10 +65,7 @@ export class CadastroPage {
       'username': value.username
     }
     loading.present();
-    console.log('Formulário enviado!');
-    console.log(data);
-
-    this.rest.postCadastro(value).subscribe(
+    this.rest.postCadastro(data).subscribe(
       data => {
         // console.log(data);
         this.navCtrl.popToRoot();
