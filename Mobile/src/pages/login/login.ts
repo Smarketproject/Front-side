@@ -20,8 +20,12 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public rest: RestProvider,
+<<<<<<< HEAD
     private formBuilder: FormBuilder,
     public loadingCtrl: LoadingController,
+=======
+    private formBuilder :FormBuilder,
+>>>>>>> dee56a63f426e2213392e001530ffe4fb5f639dc
     public form: FormProvider
   ) {
     this.loginForm = formBuilder.group({

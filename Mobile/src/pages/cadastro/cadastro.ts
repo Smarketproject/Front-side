@@ -59,7 +59,7 @@ export class CadastroPage {
       content: "Cadastrando",
     });
     let data = {
-      'cpf': value.cpf,
+      'cpf': this.form.cpfUnmask(value.cpf),
       'email': value.email,
       'password': value.password,
       'username': value.username
