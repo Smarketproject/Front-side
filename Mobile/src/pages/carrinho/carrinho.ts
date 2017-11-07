@@ -34,7 +34,7 @@ export class CarrinhoPage {
 
   public teste(){
     let data ={
-      bar_code: "123123"
+      bar_code: "1"
     }
     this.rest.postProduto(data).subscribe(
       data=>{
@@ -72,8 +72,7 @@ export class CarrinhoPage {
   public retirar(id){
     var index = this.procurarProduto(id);
     if(index != -1){
-      this.produtos.splice(index, index);
+      this.produtos.splice(index, 1);
     }
-    
   }
 }
