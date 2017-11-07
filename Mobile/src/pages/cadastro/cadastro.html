@@ -12,8 +12,6 @@
 
 <ion-content padding>
   <form [formGroup]="cadastroForm" (ngSubmit)="submitForm(cadastroForm.value)" padding>
-    <!-- <ion-list> -->
-
       <ion-item [ngClass]="{'error-border':(cadastroForm.controls['username'].touched) && (!cadastroForm.controls['username'].valid)}">
         <ion-label floating>Nome</ion-label>
         <ion-input type="text" [formControl]="cadastroForm.controls['username']">
