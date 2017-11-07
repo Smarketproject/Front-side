@@ -6,9 +6,15 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class RestProvider {
   private url:string = "http://127.0.0.1:8000/";//Url sem o caminho para os recursos da api
+  private baseApi = "http://localhost:8000";
   constructor(public http: Http) {
     
   }
+
+  getProdutos(){
+    return this.http.get(this.baseApi + "/product/showall");
+  }
+
 
   //Requisição para cadastro
   postCadastro(data:any){

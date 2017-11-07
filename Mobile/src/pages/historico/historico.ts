@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-
+import { RestProvider } from '../../providers/rest/rest';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
 
     @IonicPage()
     @Component({
@@ -9,15 +11,26 @@ import { AlertController } from 'ionic-angular';
       templateUrl: 'historico.html',
     })
     export class HistoricoPage {
+     
       testshowHistoryResult: any;
       testshowHistoryOpen: boolean;
 
+      private url:string = 'http://localhost:8000/product'
+      public show:Array<{}>;
+
       constructor(public navCtrl: NavController, public navParams: NavParams,
-                  public alertCtrl: AlertController) {
+                  public alertCtrl: AlertController,
+                  public http: Http
+      ) {
+        this.http.get(this.url + '/show')
+        .map(res => res.json())
+        .subscribe(data =>{
+          this.show = data;
+        });
       }
 
       ionViewDidLoad() {
-        console.log('ionViewDidLoad HistoricoPage');
+        
       }
       showHistory(){
         let alert = this.alertCtrl.create();
