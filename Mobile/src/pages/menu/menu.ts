@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { HistoricoPage } from '../historico/historico';
+import { CarrinhoPage } from '../carrinho/carrinho';
 
 @IonicPage()
 @Component({
@@ -18,7 +19,11 @@ export class MenuPage {
     
   }
 
-  
+  //Vai para a página do histórico
+  goToCarrinho(){
+    this.navCtrl.push(CarrinhoPage);
+    
+  }
   //Vai para a página do histórico
   goToHistorico(){
     this.navCtrl.push(HistoricoPage);

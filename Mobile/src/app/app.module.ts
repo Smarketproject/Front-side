@@ -14,6 +14,7 @@ import { HistoricoPage } from '../pages/historico/historico';
 
 import { RestProvider } from '../providers/rest/rest';
 import { FormProvider } from '../providers/form/form';
+import { CarrinhoPage } from '../pages/carrinho/carrinho';
 
 
 
@@ -23,7 +24,8 @@ import { FormProvider } from '../providers/form/form';
     MenuPage,
     CadastroPage,
     LoginPage,
-    HistoricoPage
+    HistoricoPage,
+    CarrinhoPage
     
   ],
   imports: [
@@ -37,7 +39,8 @@ import { FormProvider } from '../providers/form/form';
     LoginPage,
     MenuPage,
     CadastroPage,
-    HistoricoPage
+    HistoricoPage,
+    CarrinhoPage
   ],
   providers: [
     StatusBar,
@@ -45,6 +48,7 @@ import { FormProvider } from '../providers/form/form';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider,
     FormProvider,
+    BarcodeScanner
   ]
 })
 export class AppModule {}

@@ -10,7 +10,7 @@ import { HistoricoPage } from '../pages/historico/historico';
 })
 export class MyApp {
   
-  rootPage:any = LoginPage;
+  rootPage:any = MenuPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
