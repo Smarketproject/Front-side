@@ -34,7 +34,7 @@
           <h2 class="produto_nome">{{produto.name}}</h2>
           <p>Quantidade • 1</p>
           <h2 class="produto_preço">valor: {{produto.price}}</h2>
-          <button ion-button clear item-end>Retirar</button>
+          <button ion-button clear item-end (click)="retirar(produto.id)">Retirar</button>
         </ion-item>
       </ion-item-sliding>
     </ion-list>

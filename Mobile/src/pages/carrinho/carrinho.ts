@@ -36,10 +36,12 @@ export class CarrinhoPage {
     }
     this.rest.postProduto(data).subscribe(
       data=>{
-        console.log(data);
+        console.log(data[0]);
+        console.log(produto);
         var produto = {
-          name: data.name,
-          price: data.price
+          name: data[0].name,
+          price: data[0].price,
+          id: data[0].id,
         }
         this.produtos.push(produto);
       }, error=>{
@@ -52,4 +54,7 @@ export class CarrinhoPage {
 
   }
 
+  public retirar(id){
+
+  }
 }
