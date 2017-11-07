@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 import { RestProvider } from '../../providers/rest/rest';
 import 'rxjs/add/operator/map';
+import { FormProvider } from '../../providers/form/form';
 
 
 @IonicPage()
@@ -22,7 +23,8 @@ export class CarrinhoPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private barcodeScanner: BarcodeScanner,
-    public rest: RestProvider
+    public rest: RestProvider,
+    public form: FormProvider
   ) {
   }
 
@@ -36,14 +38,18 @@ export class CarrinhoPage {
     }
     this.rest.postProduto(data).subscribe(
       data=>{
-        console.log(data[0]);
-        console.log(produto);
+        // console.log(data[0]);
+        // console.log(produto);
         var produto = {
           name: data[0].name,
           price: data[0].price,
           id: data[0].id,
         }
-        this.produtos.push(produto);
+        if(this.procurarProduto(produto.id) == -1){
+          this.produtos.push(produto);
+        }else{
+          this.form.presentToast('Esse produto já foi adicionado à lista.');
+        }
       }, error=>{
         console.log(error);
       });
@@ -54,7 +60,20 @@ export class CarrinhoPage {
 
   }
 
+  private procurarProduto(id){
+    for(var _i=0; _i < this.produtos.length; _i++){
+      var produto = this.produtos[_i];
+      if(produto.id == id){
+        return _i;
+      }
+    }
+    return -1;
+  }
   public retirar(id){
-
+    var index = this.procurarProduto(id);
+    if(index != -1){
+      this.produtos.splice(index, index);
+    }
+    
   }
 }
