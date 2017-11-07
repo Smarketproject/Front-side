@@ -29,20 +29,19 @@ export class CarrinhoPage {
 
   ionViewDidLoad() {
 
-    this.rest.getProdutos().subscribe(
-      data => {
-
-        const response = (data as any);
-        const objeto_retorno = JSON.parse(response._body);
-        this.lista_produtos = objeto_retorno;
-
-        console.log(objeto_retorno);
-      }, error => {
-        console.log(error);
-      }
-    )
   }
 
+  public teste(){
+    let data ={
+      bar_code: "123123"
+    }
+    this.rest.postProduto(data).subscribe(
+      data=>{
+        console.log(data);
+      }, error=>{
+        console.log(error);
+      });
+  }
   async scanBarcode() {
     this.results = await this.barcodeScanner.scan();
     console.log(this.results);
