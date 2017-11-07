@@ -3,7 +3,8 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { MenuPage } from '../pages/menu/menu';
@@ -12,7 +13,6 @@ import { LoginPage } from '../pages/login/login';
 import { HistoricoPage } from '../pages/historico/historico';
 
 import { RestProvider } from '../providers/rest/rest';
-import { HttpModule } from '@angular/http';
 import { FormProvider } from '../providers/form/form';
 
 

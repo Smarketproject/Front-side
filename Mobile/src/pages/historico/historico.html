@@ -15,9 +15,8 @@
     </ion-card-header>
   
     <ion-list>
-      <button (click)="showHistory()" ion-item>
-        <ion-icon name="cart"  item-start></ion-icon>
-        Compra-06 20/10/2017  
+      <button ion-item *ngFor="let s of showall">
+       {{s.name}}
       </button>
   
       <button (click)="showHistory()" ion-item>
