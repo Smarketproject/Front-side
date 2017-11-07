@@ -17,8 +17,7 @@ export class CarrinhoPage {
 
   options: BarcodeScannerOptions;
   results: {};
-
-  public lista_produtos = new Array<any>();
+  public produtos = new Array<any>();
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -38,6 +37,11 @@ export class CarrinhoPage {
     this.rest.postProduto(data).subscribe(
       data=>{
         console.log(data);
+        var produto = {
+          name: data.name,
+          price: data.price
+        }
+        this.produtos.push(produto);
       }, error=>{
         console.log(error);
       });
