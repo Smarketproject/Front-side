@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { HistoricoPage } from '../historico/historico';
 import { CarrinhoPage } from '../carrinho/carrinho';
+import { RestProvider } from '../../providers/rest/rest';
 
 @IonicPage()
 @Component({
@@ -11,22 +12,36 @@ import { CarrinhoPage } from '../carrinho/carrinho';
 })
 export class MenuPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log(this.navParams.get('token'));
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public rest: RestProvider
+  ) {
+    
   }
 
   ionViewDidLoad() {
-    
+    console.log(this.navParams.get('token'));
   }
 
   //Vai para a página do histórico
   goToCarrinho(){
-    this.navCtrl.push(CarrinhoPage);
+    this.navCtrl.push(
+      CarrinhoPage,
+      {
+        token: this.navParams.get('token')
+      }
+    );
     
   }
   //Vai para a página do histórico
   goToHistorico(){
-    this.navCtrl.push(HistoricoPage);
+    this.navCtrl.push(
+      HistoricoPage,
+      {
+        token: this.navParams.get('token')
+      }
+    );
     
   }
   //Vai para a página de atualização do cadastro
@@ -35,9 +50,14 @@ export class MenuPage {
   }
 
   goToLogin(){
-    this.navCtrl.setRoot(LoginPage);
+    this.rest.postLogout(this.navParams.get('token')).subscribe(
+      data=>{
+        console.log(data);
+        this.navCtrl.setRoot(LoginPage);
+      }, 
+      error=>{
+        console.log(error);
+      });
   }
-
-
 
 }

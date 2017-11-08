@@ -29,17 +29,27 @@ export class CarrinhoPage {
   }
 
   ionViewDidLoad() {
-
+    console.log(this.navParams.get('token'));
   }
 
   public teste(){
     let data ={
       bar_code: "1"
     }
+    this.getProduto(data);    
+  }
+  async scanBarcode() {
+    var results = await this.barcodeScanner.scan();
+    // console.log(this.results);
+    let data ={
+      bar_code: results.text
+    }
+    this.getProduto(data);
+  }
+
+  private getProduto(data: any){
     this.rest.postProduto(data).subscribe(
       data=>{
-        // console.log(data[0]);
-        // console.log(produto);
         var produto = {
           name: data[0].name,
           price: data[0].price,
@@ -52,14 +62,9 @@ export class CarrinhoPage {
         }
       }, error=>{
         console.log(error);
+        this.form.presentToast('Não foi possível comunicar com o servidor.');
       });
   }
-  async scanBarcode() {
-    this.results = await this.barcodeScanner.scan();
-    console.log(this.results);
-
-  }
-
   private procurarProduto(id){
     for(var _i=0; _i < this.produtos.length; _i++){
       var produto = this.produtos[_i];

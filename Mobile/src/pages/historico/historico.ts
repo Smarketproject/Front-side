@@ -30,7 +30,7 @@ import 'rxjs/add/operator/map';
       }
 
       ionViewDidLoad() {
-        
+        console.log(this.navParams.get('token'));
       }
       showHistory(){
         let alert = this.alertCtrl.create();
