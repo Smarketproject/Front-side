@@ -24,12 +24,19 @@
           <!-- <ion-thumbnail item-start>
           <img id="produto" src="assets/imgs/">
           </ion-thumbnail> -->
-          <h2 class="produto_nome">{{produto.name}}</h2>
-          <p>Quantidade • 1</p>
-          <h2 class="produto_preço">valor: {{produto.price}}</h2>
+          <div>
+            <h2 class="produto_nome">{{produto.name}}</h2>
+            <p>Quantidade</p>
+            <h2 class="produto_preço">valor: {{produto.price}}</h2>
+          </div>
+
           <button ion-button clear item-end (click)="retirar(produto.id)">Retirar</button>
         </ion-item>
       </ion-item-sliding>
+      <ion-item>
+          <ion-label stacked>Quantidade: </ion-label>
+          <ion-input type="number" min="1"[ngModel]="produto.quantidade"></ion-input>
+      </ion-item>  
     </ion-list>
 
   </ion-grid>

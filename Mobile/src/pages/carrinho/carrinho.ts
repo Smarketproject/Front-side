@@ -38,7 +38,7 @@ export class CarrinhoPage {
   */
   public teste() {
     let data = {
-      bar_code: "1"
+      bar_code: "123123"
     }
     this.getProduto(data);
   }
@@ -85,6 +85,7 @@ export class CarrinhoPage {
           name: data[0].name,
           price: data[0].price,
           id: data[0].id,
+          quantidade: 1
         }
         if (this.procurarProduto(produto.id) == -1) {//Verifica se o produto já foi adicionado à lista
           this.produtos.push(produto);//Adiciona à lista de produtos
