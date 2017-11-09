@@ -2,25 +2,25 @@
   <div text-center>
     <ion-img class="logo" width="150px" height="150px" src="../assets/imgs/logo.png"></ion-img>
   </div>
-  <form [formGroup]="loginForm"(ngSubmit)="submitForm(loginForm.value)" padding>
+  <form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm.value)" padding>
     <ion-list>
 
       <ion-item>
         <ion-label floating>Nome</ion-label>
         <ion-input type="text" [formControl]="loginForm.controls['username']"></ion-input>
       </ion-item>
-      
+
       <ion-item>
         <ion-label floating>Senha</ion-label>
         <ion-input type="password" [formControl]="loginForm.controls['password']"></ion-input>
       </ion-item>
-      
+
       <div padding>
         <button ion-button color="primary" [disabled]="!loginForm.valid" block>Entrar</button>
-        <p class="center">Não é usuário? <strong (click)="goToCadastro()">Inscreva-se</strong></p>
+        <p class="center">Não é usuário?
+          <strong (click)="goToCadastro()">Inscreva-se</strong>
+        </p>
       </div>
-      
     </ion-list>
   </form>
 </ion-content>
-  

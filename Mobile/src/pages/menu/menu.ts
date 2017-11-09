@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { HistoricoPage } from '../historico/historico';
 import { CarrinhoPage } from '../carrinho/carrinho';
 import { RestProvider } from '../../providers/rest/rest';
+import { FormProvider } from '../../providers/form/form';
 
 @IonicPage()
 @Component({
@@ -11,17 +12,20 @@ import { RestProvider } from '../../providers/rest/rest';
   templateUrl: 'menu.html',
 })
 export class MenuPage {
+  config: {};
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public rest: RestProvider
+    public rest: RestProvider,
+    public loadingCtrl: LoadingController,
+    public form: FormProvider
   ) {
-    
+    this.createConfig();
   }
 
   ionViewDidLoad() {
-    console.log(this.navParams.get('token'));
+
   }
 
   //Vai para a página do histórico
@@ -50,14 +54,26 @@ export class MenuPage {
   }
 
   goToLogin(){
-    this.rest.postLogout(this.navParams.get('token')).subscribe(
+    let loading = this.loadingCtrl.create({
+      content: "Saindo" 
+    });
+    loading.present();
+  this.rest.postLogout(this.navParams.get('token')).subscribe(
       data=>{
-        console.log(data);
+        // console.log(data);
+        loading.dismiss();
         this.navCtrl.setRoot(LoginPage);
       }, 
       error=>{
-        console.log(error);
+        loading.dismiss();
+        if(error.status == 0){
+          this.form.presentToast('Não foi possível conectar ao servidor, tente novamente.')
+        }
       });
   }
+  private createConfig(){
+    this.config = {
 
+    }
+  }  
 }

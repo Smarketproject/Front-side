@@ -14,6 +14,7 @@ import { FormProvider } from '../../providers/form/form';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  config: {};
   loginForm: FormGroup;
 
   constructor(
@@ -41,7 +42,7 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-
+    console.log(this.config);
   }
 
   //Vai para a página de cadastro
@@ -54,33 +55,32 @@ export class LoginPage {
     this.navCtrl.setRoot(
       MenuPage,
       {
-        token: token 
+        token: token
       });
   }
 
-    submitForm(value:any){
-      let loading = this.loadingCtrl.create({
-        content: "Validando as credenciais" 
-      });
-    
-      loading.present();
-      this.rest.postLogin(value).subscribe(
-        data => {
-          // console.log(data);
-          this.goToMenu(data.auth_token);
-          loading.dismiss();
-        },
-        error => {
-          // console.log(error);
-          if(error.status == 400){
-            this.form.presentToast('Nome ou senha incorreto!');
-          }
+  //Envia ao servidor as credenciais para realizar o login  
+  submitForm(value: any) {
+    let loading = this.loadingCtrl.create({
+      content: "Validando as credenciais"
+    });
 
-          if(error.status == 0){
-            this.form.presentToast('Não foi possível realizar o login, tente mais tarde.');
-          }
-          loading.dismiss();
-        });
+    loading.present();
+    this.rest.postLogin(value).subscribe(
+      data => {
+        this.goToMenu(data.auth_token);
+        loading.dismiss();
+      },
+      error => {
+        if (error.status == 400) {
+          this.form.presentToast('Nome ou senha incorreto!');
+        }
+
+        if (error.status == 0) {
+          this.form.presentToast('Não foi possível realizar o login, tente mais tarde.');
+        }
+        loading.dismiss();
+      });
   }
 
 }

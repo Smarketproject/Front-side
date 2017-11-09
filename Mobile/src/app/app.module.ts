@@ -25,7 +25,7 @@ import { CarrinhoPage } from '../pages/carrinho/carrinho';
     CadastroPage,
     LoginPage,
     HistoricoPage,
-    CarrinhoPage
+    CarrinhoPage,
     
   ],
   imports: [
@@ -40,7 +40,7 @@ import { CarrinhoPage } from '../pages/carrinho/carrinho';
     MenuPage,
     CadastroPage,
     HistoricoPage,
-    CarrinhoPage
+    CarrinhoPage,
   ],
   providers: [
     StatusBar,
