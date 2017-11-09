@@ -18,7 +18,7 @@ export class CarrinhoPage {
 
   options: BarcodeScannerOptions;
   results: {};
-  public produtos = new Array<any>();
+  private produtos = new Array<any>();
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -31,6 +31,7 @@ export class CarrinhoPage {
   }
 
   ionViewDidLoad() {
+    this.getList();
   }
 
   /*
@@ -85,10 +86,12 @@ export class CarrinhoPage {
           name: data[0].name,
           price: data[0].price,
           id: data[0].id,
-          quantidade: 1
+          quantidade: "1"
         }
         if (this.procurarProduto(produto.id) == -1) {//Verifica se o produto já foi adicionado à lista
           this.produtos.push(produto);//Adiciona à lista de produtos
+          this.saveList();
+          
         } else {
           this.form.presentToast('Esse produto já foi adicionado à lista.');
         }
@@ -112,6 +115,22 @@ export class CarrinhoPage {
     var index = this.procurarProduto(id);
     if (index != -1) {
       this.produtos.splice(index, 1);
+      // this.saveList();
     }
+  }
+
+  //Salva a lista no provider
+  public saveList(){
+    this.form.setProductsList(this.produtos);
+    console.log(this.produtos[0]);
+  }
+
+  //Pega a lista salva no provider
+  public getList(){
+    this.produtos = this.form.getProductsList();
+  }
+
+  print(param){
+    console.log(param);
   }
 }

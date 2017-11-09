@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar id="navbar">
+  <ion-navbar id="navbar" (click)="saveList()">
     <ion-title>Carrinho</ion-title>
   </ion-navbar>
 </ion-header>
@@ -15,7 +15,7 @@
   </button>
 
   <ion-grid>
-    <ion-list *ngIf="!produtos">
+    <ion-list *ngIf="!produtos.length">
       <p>Aperte no botão para adicionar algum produto a lista.</p>
     </ion-list>
     <ion-list *ngFor="let produto of produtos">
@@ -25,8 +25,7 @@
           <img id="produto" src="assets/imgs/">
           </ion-thumbnail> -->
           <div>
-            <h2 class="produto_nome">{{produto.name}}</h2>
-            <p>Quantidade</p>
+            <h2>{{produto.name}}</h2>
             <h2 class="produto_preço">valor: {{produto.price}}</h2>
           </div>
 
@@ -35,7 +34,7 @@
       </ion-item-sliding>
       <ion-item>
           <ion-label stacked>Quantidade: </ion-label>
-          <ion-input type="number" min="1"[ngModel]="produto.quantidade"></ion-input>
+          <ion-input type="number" min="1" [(ngModel)]="produto.quantidade" (change)="saveList()"></ion-input>
       </ion-item>  
     </ion-list>
 

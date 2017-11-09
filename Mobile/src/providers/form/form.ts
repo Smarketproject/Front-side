@@ -10,11 +10,11 @@ import { ToastController } from 'ionic-angular';
 */
 @Injectable()
 export class FormProvider {
+  private products = new Array<any>();
   
   constructor(
     public toastCtrl: ToastController,
   ) {
-    
   }
   //Tamanho do input cpf
   public cpfLength(){
@@ -104,5 +104,10 @@ export class FormProvider {
       toast.present();
   }
   
-  
+  public setProductsList(products){
+    this.products = products;
+  }
+  public getProductsList(){
+    return this.products;
+  }
 }
