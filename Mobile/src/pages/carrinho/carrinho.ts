@@ -131,5 +131,7 @@ export class CarrinhoPage {
     this.produtos = this.form.getProductsList();
   }
 
-  
+  public getUrl(image){
+    return this.rest.getUrl() + image;
+  }
 }

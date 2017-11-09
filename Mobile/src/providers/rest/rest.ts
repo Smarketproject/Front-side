@@ -13,11 +13,12 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class RestProvider {
-  private url:string = "http://127.0.0.1:8000/";//Url sem o caminho para os recursos da api (servidor local)
-  // private url:string = "https://smarket.lumal21.net.br/";//Url sem o caminho para os recursos da api (servidor remoto)
+  // private url:string = "http://127.0.0.1:8000/";//Url sem o caminho para os recursos da api (servidor local)
+  private url:string = "https://smarket.lumal21.net.br/";//Url sem o caminho para os recursos da api (servidor remoto)
   constructor(public http: Http) {
     
   }
+
 
   //Requisição do logout
   postLogout(token: string){
@@ -65,6 +66,9 @@ export class RestProvider {
         .map(res => res.json());
   }
 
+  public getUrl(){
+    return this.url;
+  }
 }
 
 

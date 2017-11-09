@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar id="navbar" (click)="saveList()">
+  <ion-navbar id="navbar">
     <ion-title>Carrinho</ion-title>
   </ion-navbar>
 </ion-header>
@@ -22,7 +22,7 @@
       <ion-item-sliding>
         <ion-item>
           <ion-thumbnail item-start>
-          <img id="produto" src="">
+          <img id="produto" src="{{getUrl(produto.image)}}">
           </ion-thumbnail>
           <div>
             <h2>{{produto.name}}</h2>
