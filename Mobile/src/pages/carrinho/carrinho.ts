@@ -85,6 +85,7 @@ export class CarrinhoPage {
         var produto = {
           name: data[0].name,
           price: data[0].price,
+          image: data[0].image,
           id: data[0].id,
           quantidade: "1"
         }
@@ -130,7 +131,5 @@ export class CarrinhoPage {
     this.produtos = this.form.getProductsList();
   }
 
-  print(param){
-    console.log(param);
-  }
+  
 }
