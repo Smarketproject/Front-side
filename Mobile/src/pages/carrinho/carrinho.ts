@@ -34,9 +34,6 @@ export class CarrinhoPage {
     this.getList();
   }
 
-  /*
-    Requisição para testa o produto, deve ser substituído no arquivo carrinho.html por um dos métodos scanBarcode()
-  */
   public teste() {
     let data = {
       bar_code: "123123"
@@ -44,14 +41,7 @@ export class CarrinhoPage {
     this.getProduto(data);
   }
 
-/*
-  Scanner de código de barras
-  Nas branches eu (Álvaro) encontrei duas possibilidades, temos que testar as duas pra ver qual é a certa.
-  A primeira que der certo ta valendo.
-  **************************Apagar esse comentário e uma das opções**************************
-*/
   
-  //Opção 1
   //Faz a leitura do código de barras e chama o método getProduto()
   public scanBarcode() {
     this.barcodeScanner.scan().then(results => {
@@ -66,18 +56,7 @@ export class CarrinhoPage {
       });
 
   }
-  //Opção 2
-  //Faz a leitura do código de barras e chama o método getProduto()
-  // async scanBarcode() {
-  //   var results = await this.barcodeScanner.scan();
-  //   let data = {
-  //     bar_code: results.text
-  //   }
-  //   this.getProduto(data);
-  // }
 
- 
- 
   //Requisita ao servidor as informações de um produto a partir do seu código de barras
   private getProduto(data: any) {
     this.rest.postProduto(data).subscribe(
@@ -131,7 +110,19 @@ export class CarrinhoPage {
     this.produtos = this.form.getProductsList();
   }
 
+  //Pega a url para uma foto do servidor
   public getUrl(image){
     return this.rest.getUrl() + image;
+  }
+
+  public diminuiQntd(qntd){
+    if(qntd > 1)
+      qntd--;
+
+    return qntd; 
+  }
+
+  public aumentaQntd(qntd){
+    return ++qntd;
   }
 }

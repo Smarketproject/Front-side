@@ -7,9 +7,9 @@
 <ion-content padding>
 
 
-    <!-- <button ion-button icon-left full (click)="teste()"> -->
+    <button ion-button icon-left full (click)="teste()">
     <!-- Apagar a linha de cima e descomentar a linha de baixo quando acabar os testes do scanbarcode() -->
-    <button ion-button icon-left full (click)="scanBarcode()">
+    <!-- <button ion-button icon-left full (click)="scanBarcode()"> -->
       <ion-icon name="qr-scanner"></ion-icon>
       Adicionar Produto
   </button>
@@ -28,14 +28,13 @@
             <h2>{{produto.name}}</h2>
             <h2 class="produto_preço">valor: {{produto.price}}</h2>
           </div>
-
+          <ion-icon name="remove-circle" class="qntd-produto" (click)="produto.quantidade = diminuiQntd(produto.quantidade)"> </ion-icon>
+          <span class="qntd-produto">{{ produto.quantidade }}</span>
+          <ion-icon name="add-circle" class="qntd-produto" (click)="produto.quantidade = aumentaQntd(produto.quantidade)"></ion-icon>
           <button ion-button clear item-end (click)="retirar(produto.id)">Retirar</button>
         </ion-item>
       </ion-item-sliding>
-      <ion-item>
-          <ion-label stacked>Quantidade: </ion-label>
-          <ion-input type="number" min="1" [(ngModel)]="produto.quantidade" (change)="saveList()"></ion-input>
-      </ion-item>  
+        
     </ion-list>
 
   </ion-grid>
