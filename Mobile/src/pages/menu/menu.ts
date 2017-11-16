@@ -5,6 +5,7 @@ import { HistoricoPage } from '../historico/historico';
 import { CarrinhoPage } from '../carrinho/carrinho';
 import { RestProvider } from '../../providers/rest/rest';
 import { FormProvider } from '../../providers/form/form';
+import { AtualizarPage } from '../atualizar/atualizar';
 
 @IonicPage()
 @Component({
@@ -50,7 +51,12 @@ export class MenuPage {
   }
   //Vai para a página de atualização do cadastro
   goToAtualizarCadastro(){
-    //falta criar a página
+    this.navCtrl.push(
+      AtualizarPage,
+      {
+        token: this.navParams.get('token')
+      }
+    );
   }
 
   goToLogin(){

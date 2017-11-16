@@ -49,6 +49,11 @@ export class RestProvider {
     var path = "login/";
     return this.postRequest(path, data);
   }
+  //Requisição para atualizar cadastro
+  postAtualizar(data:any){
+    var path = "atualizar/";
+    return this.postRequest(path, data);
+  }
 
   //Método base para qualquer requisição get
   private getRequest(path:string){
