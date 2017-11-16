@@ -12,13 +12,18 @@
     <ion-list>
 
       <ion-item>
-        <ion-label floating>Senha</ion-label>
+        <ion-label floating>Senha atual</ion-label>
+        <ion-input type="password" [formControl]="atualizarForm.controls['oldpassword']"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Nova senha</ion-label>
         <ion-input type="password" [formControl]="atualizarForm.controls['password']"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Confirmar Senha</ion-label>
-        <ion-input type="password" [formControl]="atualizarForm.controls['password']"></ion-input>
+        <ion-input type="password" [formControl]="atualizarForm.controls['confirm']"></ion-input>
       </ion-item>
 
       <div padding>

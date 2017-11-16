@@ -5,6 +5,7 @@ import { MenuPage } from '../menu/menu';
 
 import { FormGroup, FormBuilder, Validators } from "@angular/forms"
 import { FormProvider } from '../../providers/form/form';
+import { PasswordValidator } from '../../validators/password';
 
 @IonicPage()
 @Component({
@@ -25,47 +26,50 @@ export class AtualizarPage {
 
 
     this.atualizarForm = formBuilder.group({
+      'oldpassword': [
+        '',
+        Validators.required
+      ],
       'password': [
-        null,
-        Validators.compose([
-          Validators.required,
-        ])
+        '',
+        Validators.required
+      ],
+      'confirm': [
+        '',
+        Validators.required
       ]
-    });
+    }, { 'validator': PasswordValidator.isEqual });
+    
   }
 
   ionViewDidLoad() {
     console.log(this.config);
   }
 
-  //ionViewDidLoad() {
-  //console.log('ionViewDidLoad AtualizarPage');
-  //}
-
   //Vai para a página de menu
   goToMenu(token) {
-    this.navCtrl.setRoot(
-      MenuPage,
-      {
-        token: token
-      });
+    this.navCtrl.pop();
   }
 
   //Envia ao servidor as credenciais para realizar a atualização de usuario  
   submitForm(value: any) {
+    let data = {
+      password: value.oldpassword,
+      new_password: value.password
+    }
     let loading = this.loadingCtrl.create({
       content: "Validando as credenciais"
     });
 
     loading.present();
-    this.rest.postAtualizar(value).subscribe(
+    this.rest.postAtualizar(data, this.navParams.get('token')).subscribe(
       data => {
         this.goToMenu(data.auth_token);
         loading.dismiss();
       },
       error => {
-        if (error.status == 400) {
-          this.form.presentToast('Nome ou senha incorreto!');
+        if (error.status == 401) {
+          this.form.presentToast('Senha incorreto!');
         }
 
         if (error.status == 0) {

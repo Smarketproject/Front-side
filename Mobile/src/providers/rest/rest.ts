@@ -13,9 +13,9 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class RestProvider {
-  // private url:string = "http://127.0.0.1:8000/";//Url sem o caminho para os recursos da api (servidor local)
+   private url:string = "http://127.0.0.1:8000/";//Url sem o caminho para os recursos da api (servidor local)
   // private url:string = "https://smarket.lumal21.net.br/";//Url sem o caminho para os recursos da api (servidor remoto)
-  private url:string = "https://homol.redes.unb.br/ptr022017B/";//Url sem o caminho para os recursos da api (servidor remoto)
+  //private url:string = "https://homol.redes.unb.br/ptr022017B/";//Url sem o caminho para os recursos da api (servidor remoto)
   
   constructor(public http: Http) {
     
@@ -50,9 +50,13 @@ export class RestProvider {
     return this.postRequest(path, data);
   }
   //Requisição para atualizar cadastro
-  postAtualizar(data:any){
-    var path = "atualizar/";
-    return this.postRequest(path, data);
+  postAtualizar(data:any, token: string){
+    var path = "userup/";
+    var header = {
+      label: "Authorization",
+      content: "Token " + token
+    }
+    return this.postRequest(path, data, header);
   }
 
   //Método base para qualquer requisição get
