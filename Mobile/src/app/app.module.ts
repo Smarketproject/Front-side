@@ -11,6 +11,7 @@ import { MenuPage } from '../pages/menu/menu';
 import { CadastroPage } from '../pages/cadastro/cadastro';
 import { LoginPage } from '../pages/login/login';
 import { HistoricoPage } from '../pages/historico/historico';
+import { AtualizarPage } from '../pages/atualizar/atualizar';
 
 import { RestProvider } from '../providers/rest/rest';
 import { FormProvider } from '../providers/form/form';
@@ -26,6 +27,7 @@ import { CarrinhoPage } from '../pages/carrinho/carrinho';
     LoginPage,
     HistoricoPage,
     CarrinhoPage,
+    AtualizarPage,
     
   ],
   imports: [
@@ -41,6 +43,7 @@ import { CarrinhoPage } from '../pages/carrinho/carrinho';
     CadastroPage,
     HistoricoPage,
     CarrinhoPage,
+    AtualizarPage,
   ],
   providers: [
     StatusBar,
