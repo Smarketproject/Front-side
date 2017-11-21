@@ -64,7 +64,7 @@ export class RestProvider {
   getHistorico(token: string){
     let path= "purchase/show/";
     var header = {
-      label: "Authotization",
+      label: "Authorization",
       content: "Token" + token
     }
     return this.getRequest(path, header);

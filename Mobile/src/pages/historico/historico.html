@@ -9,22 +9,17 @@
 
 <ion-content padding>
 
-  <ion-card>
-    <ion-card-header>
-      Últimas compras:
-    </ion-card-header>
-  
-    <ion-list>
-      <button ion-item *ngFor="let s of showall">
-       {{s.name}}
-      </button>
-  
-      <button (click)="showHistory()" ion-item>
-        <ion-icon name="cart" item-start></ion-icon>
-        Compra-05 12/10/2017 
-      </button>
-  
-    </ion-list>
-  </ion-card>
-
+    <ion-card>
+        <ion-card-header>
+          11/12/2017
+        </ion-card-header>
+      
+        <ion-list>
+          <button ion-item>
+            <ion-icon name="cart" item-start></ion-icon>
+            Valor: R$24,50
+          </button>
+      
+        </ion-list>
+      </ion-card>
 </ion-content>
