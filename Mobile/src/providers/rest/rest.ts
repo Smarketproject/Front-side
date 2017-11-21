@@ -49,6 +49,7 @@ export class RestProvider {
     var path = "login/";
     return this.postRequest(path, data);
   }
+
   //Requisição para atualizar cadastro
   postAtualizar(data:any, token: string){
     var path = "userup/";
@@ -57,6 +58,12 @@ export class RestProvider {
       content: "Token " + token
     }
     return this.postRequest(path, data, header);
+  }
+
+  //Requisição para mostrar historico
+  getHistorico(){
+    let path= "show"
+    return this.getRequest(path);
   }
 
   //Método base para qualquer requisição get
