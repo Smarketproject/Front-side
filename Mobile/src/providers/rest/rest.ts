@@ -62,13 +62,23 @@ export class RestProvider {
 
   //Requisição para mostrar historico
   getHistorico(){
-    let path= "show"
-    return this.getRequest(path);
+    let path= "show";
+    var header = {
+      label: "Authotization",
+      content: "Token" + token
+    }
+    return this.getRequest(path, header);
   }
 
   //Método base para qualquer requisição get
-  private getRequest(path:string){
-    return this.http.get(this.url + path)
+  private getRequest(path:string, header?: any){
+    let headers = new Headers();
+    if(header){
+      headers.append(header.label, header.content);
+    }
+    headers.append('Content-Type', 'application/json');
+    let options = new RequestOptions({headers : headers});
+    return this.http.get(this.url + path, options)
       .map(res => res.json());
   }
 
