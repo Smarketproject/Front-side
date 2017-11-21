@@ -31,7 +31,7 @@ import 'rxjs/add/operator/map';
       }
 
       private getHistorico(){
-        this.rest.getHistorico().subscribe(
+        this.rest.getHistorico(this.navParams.get('token')).subscribe(
           data =>{
             console.log(data);
           },erro=>{

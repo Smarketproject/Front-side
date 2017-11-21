@@ -61,8 +61,8 @@ export class RestProvider {
   }
 
   //Requisição para mostrar historico
-  getHistorico(){
-    let path= "show";
+  getHistorico(token: string){
+    let path= "purchase/show/";
     var header = {
       label: "Authotization",
       content: "Token" + token
