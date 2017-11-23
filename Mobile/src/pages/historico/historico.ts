@@ -14,11 +14,14 @@ import 'rxjs/add/operator/map';
 
       private compras = new Array<any>();
       private compra = new Array<any>();
+      private testshowHistoryOpen;
+      private testshowHistoryResult;
+
 
       constructor(public navCtrl: NavController, public navParams: NavParams,
                   public alertCtrl: AlertController,
                   public http: Http,
-                  public rest: RestProvider,){
+                  public rest: RestProvider){
   
       }
 
@@ -26,57 +29,65 @@ import 'rxjs/add/operator/map';
       private getCompras(){
         this.rest.getCompras(this.navParams.get('token')).subscribe(
           data =>{
-            console.log(data);
             this.compras = data
           },erro=>{
 
           })
       }
 
-      private getCompra(){
-        this.rest.getCompra(this.navParams.get('token')).subscribe(
-          data =>{
-            console.log(data);
-            this.compra = data
-          },erro=>{
 
-          })
+      public getDate(at){
+        return at.slice(8,10) + " - " + at.slice(5,7) + " - " + at.slice(0,4) + " \ ";
       }
 
-      public reorder_date(at){
-        var hora = "Horario: " + at.slice(11,16)
-        var data = at.slice(8,10) + " - " + at.slice(5,7) + " - " + at.slice(0,4) + " \ "
-        return data + hora
+      public getTime(at){
+        return at.slice(11,16);
       }
 
+      
       ionViewDidLoad() {
         this.getCompras();
         //this.getCompra();
         
       }
-      //  showHistory(){
-      //    let alert = this.alertCtrl.create();
-      //    alert.setTitle('Histórico Data 20/10/2017 Valor:R$ 15,90');
+      showHistory(compra){
         
+        this.rest.getCompra(this.navParams.get('token'),compra.cart_id).subscribe(data=>{
+          // console.log(compra);
+          // console.log(data);
+          this.historyPopUp(compra, data);
+        }, error=>{
+            console.log(error)
+        })
+        
+      }  
 
-      //    alert.addInput({
-      //      type: 'checkbox',
-      //      label: 'Biscoito Oreo R$ 3,90',
-      //      value: 'value1',
+       private historyPopUp(compra:any, produtos:any){
+        let alert = this.alertCtrl.create();
+        var title = 'Historico Data: ' + this.getDate(compra.created_at) + ' Valor: ' + compra.Total; 
+        alert.setTitle(title);
+        
+        for(let produto of produtos){
+          alert.addInput({
+            type: 'checkbox',
+            label: produto.name + ' R$ ' + (produto.price * produto.quantity) + " ( " + produto.quantity +" )",
+            value: produto.bar_code,
           
-      //    });
+          });
+        }
 
-      //    alert.addButton('Cancel');
-      //    alert.addButton({
-      //      text: 'Adicionar Produtos na nova lista',
-      //      handler: data => {
-      //       console.log('Checkbox data:', data);
-      //       this.testshowHistoryOpen = false;
-      //       this.testshowHistoryResult = data;
-      //      }
-      //    });
-      //    alert.present();
-      //  }
+        alert.addButton('Cancel');
+        alert.addButton({
+          text: 'Adicionar Produtos na nova lista',
+          handler: data => {
+          console.log('Checkbox data:', data);
+          this.testshowHistoryOpen = false;
+          this.testshowHistoryResult = data;
+          }
+        });
+        alert.present();
       }
+    }
 
+      
 

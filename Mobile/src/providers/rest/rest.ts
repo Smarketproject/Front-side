@@ -71,8 +71,8 @@ export class RestProvider {
   }
   
   //Requisição para mostrar compra
-  getCompra(token: string){
-    let path= "cart/";
+  getCompra(token: string, cart_id){
+    let path= "cart/" + cart_id + "/";
     var header = {
       label: "Authorization",
       content: "Token " + token

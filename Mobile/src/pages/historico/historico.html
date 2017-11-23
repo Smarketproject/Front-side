@@ -15,10 +15,12 @@
         </ion-card-header>
       
         <ion-list inset>
-          <button ion-item *ngFor="let c of compras" (click)="itemSelected(c.created_at)">
+          <ion-item *ngFor="let compra of compras" (click)="showHistory(compra)">
               <ion-icon name="cart" item-start></ion-icon>
-              {{reorder_date(c.created_at)}}
-          </button>
+              <p>Data: {{getDate(compra.created_at)}}</p>
+              <p>Hora: {{getTime(compra.created_at)}}</p>
+              <p>Valor: {{compra.Total}}</p>
+            </ion-item>
       
         </ion-list>
       </ion-card>
