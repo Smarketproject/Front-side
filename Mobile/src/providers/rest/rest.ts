@@ -60,12 +60,22 @@ export class RestProvider {
     return this.postRequest(path, data, header);
   }
 
-  //Requisição para mostrar historico
-  getHistorico(token: string){
+  //Requisição para mostrar compras
+  getCompras(token: string){
     let path= "purchase/show/";
     var header = {
       label: "Authorization",
-      content: "Token" + token
+      content: "Token " + token
+    }
+    return this.getRequest(path, header);
+  }
+  
+  //Requisição para mostrar compra
+  getCompra(token: string){
+    let path= "cart/";
+    var header = {
+      label: "Authorization",
+      content: "Token " + token
     }
     return this.getRequest(path, header);
   }

@@ -11,13 +11,13 @@
 
     <ion-card>
         <ion-card-header>
-          11/12/2017
+          Compras:
         </ion-card-header>
       
-        <ion-list>
-          <button ion-item>
-            <ion-icon name="cart" item-start></ion-icon>
-            Valor: R$24,50
+        <ion-list inset>
+          <button ion-item *ngFor="let c of compras" (click)="itemSelected(c.created_at)">
+              <ion-icon name="cart" item-start></ion-icon>
+              {{reorder_date(c.created_at)}}
           </button>
       
         </ion-list>
