@@ -19,9 +19,11 @@
               <ion-icon name="cart" item-start></ion-icon>
               <p>Data: {{getDate(compra.created_at)}}</p>
               <p>Hora: {{getTime(compra.created_at)}}</p>
-              <p>Valor: {{compra.Total}}</p>
-            </ion-item>
-      
+              <p>Valor: R$ {{compra.Total}}</p>
+          </ion-item>
         </ion-list>
+        <div *ngIf="compras.length == 0" style="margin: 8px;">
+          <p>Nenhuma compra foi realizada até o momento.</p>
+        </div>
       </ion-card>
 </ion-content>

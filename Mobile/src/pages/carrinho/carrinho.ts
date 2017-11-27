@@ -28,6 +28,10 @@ export class CarrinhoPage {
     public loadingCtrl: LoadingController,
 
   ) {
+    if(this.navParams.get('produtos')){
+      this.inicializarProdutos(this.navParams.get('produtos'));
+    }
+
   }
 
   ionViewDidLoad() {
@@ -124,5 +128,14 @@ export class CarrinhoPage {
 
   public aumentaQntd(qntd){
     return ++qntd;
+  }
+
+  private inicializarProdutos(produtos: any){
+    for(let produto of produtos){
+      let data = {
+        bar_code: produto + ""
+      }
+      this.getProduto(data);
+    }
   }
 }
