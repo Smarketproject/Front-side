@@ -62,15 +62,16 @@ export class CarrinhoPage {
   }
 
   //Requisita ao servidor as informações de um produto a partir do seu código de barras
-  private getProduto(data: any) {
-    this.rest.postProduto(data).subscribe(
+  private getProduto(barCode: any) {
+    this.rest.postProduto(barCode).subscribe(
       data => {
         var produto = {
           name: data[0].name,
           price: data[0].price,
           image: data[0].image,
           id: data[0].id,
-          quantidade: "1"
+          quantidade: "1",
+          bar_code: barCode.bar_code
         }
         if (this.procurarProduto(produto.id) == -1) {//Verifica se o produto já foi adicionado à lista
           this.produtos.push(produto);//Adiciona à lista de produtos
@@ -137,5 +138,30 @@ export class CarrinhoPage {
       }
       this.getProduto(data);
     }
+  }
+
+  public finalizarCompra(){
+    this.rest.postFinalizarCompra(
+      this.navParams.get('token'), 
+      this.formatarFinalizacao()
+    ).subscribe(data=>{
+      console.log(data);
+    }, error=>{
+
+    });
+  }
+
+  private formatarFinalizacao(){
+    var data = {
+      products:[]
+    }
+    for(let produto of this.produtos){
+      let product = {
+        bar_code: produto.bar_code,
+        quantity: produto.quantidade
+      }  
+      data.products.push(product)
+    }
+    return data;
   }
 }

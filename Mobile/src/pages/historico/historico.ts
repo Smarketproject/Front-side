@@ -32,7 +32,7 @@ import { CarrinhoPage } from '../carrinho/carrinho';
       private getCompras(){
         this.rest.getCompras(this.navParams.get('token')).subscribe(
           data =>{
-            this.compras = data
+            this.compras = this.reordenarHistorico(data);
           },erro=>{
 
           })
@@ -91,6 +91,15 @@ import { CarrinhoPage } from '../carrinho/carrinho';
           }
         );
         
+      }
+
+      private reordenarHistorico(data){
+        for(var _i = 0; _i < data.length/2; _i++){
+          var aux = data[_i];
+          data[_i] = data[data.length - 1 - _i];
+          data[data.length - _i] = aux;
+        }
+        return data;
       }
     }
 

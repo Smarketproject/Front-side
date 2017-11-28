@@ -21,7 +21,15 @@ export class RestProvider {
     
   }
 
-
+  //Requisição para finalizar
+  postFinalizarCompra(token: string, data: any){
+    var path = "cart/";
+    var header = {
+      label: "Authorization",
+      content: "Token " + token
+    }
+    return this.postRequest(path, data, header);
+  }
   //Requisição do logout
   postLogout(token: string){
     var path = "logout/";

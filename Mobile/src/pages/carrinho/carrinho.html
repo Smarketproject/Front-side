@@ -8,9 +8,9 @@
 
 
     <!-- Apagar a linha de cima e descomentar a linha de baixo quando acabar os testes do scanbarcode() -->
-    <button ion-button icon-left full (click)="teste()">
-      <ion-icon name="qr-scanner"></ion-icon>
-      Adicionar Produto
+  <button ion-button icon-left full (click)="teste()">
+    <ion-icon name="qr-scanner"></ion-icon>
+    Adicionar Produto
   </button>
 
   <ion-grid>
@@ -33,9 +33,12 @@
           <button ion-button clear item-end (click)="retirar(produto.id)">Retirar</button>
         </ion-item>
       </ion-item-sliding>
-        
     </ion-list>
 
   </ion-grid>
+  <button ion-button icon-left full *ngIf="produtos.length > 0" (click)="finalizarCompra()">
+    <ion-icon name="basket"></ion-icon>
+    Finalizar compra
+  </button>
 
 </ion-content>
