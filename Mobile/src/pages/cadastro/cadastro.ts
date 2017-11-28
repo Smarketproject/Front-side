@@ -67,12 +67,10 @@ export class CadastroPage {
     loading.present();
     this.rest.postCadastro(data).subscribe(
       data => {
-        // console.log(data);
         this.navCtrl.popToRoot();
         loading.dismiss();
       },
       error => {
-        // console.log(error);
         this.form.presentToast('Ocorreu algum erro no processamento.');
         loading.dismiss();
       });

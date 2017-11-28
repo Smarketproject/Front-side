@@ -43,7 +43,6 @@ export class AtualizarPage {
   }
 
   ionViewDidLoad() {
-    console.log(this.config);
   }
 
   //Vai para a página de menu

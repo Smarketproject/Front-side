@@ -66,7 +66,6 @@ export class MenuPage {
     loading.present();
   this.rest.postLogout(this.navParams.get('token')).subscribe(
       data=>{
-        // console.log(data);
         loading.dismiss();
         this.navCtrl.setRoot(LoginPage);
       }, 

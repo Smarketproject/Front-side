@@ -106,7 +106,6 @@ export class CarrinhoPage {
   //Salva a lista no provider
   public saveList(){
     this.form.setProductsList(this.produtos);
-    console.log(this.produtos[0]);
   }
 
   //Pega a lista salva no provider

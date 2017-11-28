@@ -42,7 +42,6 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    console.log(this.config);
   }
 
   //Vai para a página de cadastro
