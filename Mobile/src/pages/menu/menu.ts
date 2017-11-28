@@ -6,6 +6,7 @@ import { CarrinhoPage } from '../carrinho/carrinho';
 import { RestProvider } from '../../providers/rest/rest';
 import { FormProvider } from '../../providers/form/form';
 import { AtualizarPage } from '../atualizar/atualizar';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 @IonicPage()
 @Component({
@@ -13,23 +14,21 @@ import { AtualizarPage } from '../atualizar/atualizar';
   templateUrl: 'menu.html',
 })
 export class MenuPage {
-  config: {};
-
+ 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public rest: RestProvider,
     public loadingCtrl: LoadingController,
-    public form: FormProvider
+    public form: FormProvider,
+    private barcodeScanner: BarcodeScanner
   ) {
-    this.createConfig();
   }
 
   ionViewDidLoad() {
 
   }
 
-  //Vai para a página do histórico
   goToCarrinho(){
     this.navCtrl.push(
       CarrinhoPage,
@@ -76,9 +75,5 @@ export class MenuPage {
         }
       });
   }
-  private createConfig(){
-    this.config = {
-
-    }
-  }  
+  
 }
