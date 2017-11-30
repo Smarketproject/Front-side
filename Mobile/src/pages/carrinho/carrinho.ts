@@ -4,6 +4,7 @@ import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-sca
 import { RestProvider } from '../../providers/rest/rest';
 import 'rxjs/add/operator/map';
 import { FormProvider } from '../../providers/form/form';
+import { MenuPage } from '../menu/menu';
 
 
 @IonicPage()
@@ -145,7 +146,14 @@ export class CarrinhoPage {
       this.navParams.get('token'), 
       this.formatarFinalizacao()
     ).subscribe(data=>{
-      console.log(data);
+      this.produtos = [];
+      this.rest.getRequisitarUrl(
+        this.navParams.get('token'),
+        data.purchase_id
+      ).subscribe(response=>{
+        this.goToMenu();
+      })
+
     }, error=>{
 
     });
@@ -163,5 +171,14 @@ export class CarrinhoPage {
       data.products.push(product)
     }
     return data;
+  }
+
+  private goToMenu(){
+    this.navCtrl.push(
+      MenuPage,
+      {
+        token: this.navParams.get('token')
+      }
+    );
   }
 }

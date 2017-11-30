@@ -16,7 +16,7 @@ import { AtualizarPage } from '../pages/atualizar/atualizar';
 import { RestProvider } from '../providers/rest/rest';
 import { FormProvider } from '../providers/form/form';
 import { CarrinhoPage } from '../pages/carrinho/carrinho';
-
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 
 @NgModule({
@@ -34,6 +34,7 @@ import { CarrinhoPage } from '../pages/carrinho/carrinho';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
+    NgxQRCodeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

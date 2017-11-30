@@ -5,6 +5,8 @@ import { RestProvider } from '../../providers/rest/rest';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { CarrinhoPage } from '../carrinho/carrinho';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { MenuPage } from '../menu/menu';
 
     @IonicPage()
     @Component({
@@ -21,7 +23,8 @@ import { CarrinhoPage } from '../carrinho/carrinho';
         public navCtrl: NavController, public navParams: NavParams,
         public alertCtrl: AlertController,
         public http: Http,
-        public rest: RestProvider
+        public rest: RestProvider,
+        private barcodeScanner: BarcodeScanner
         )
       {
         this.getCompras();
@@ -32,7 +35,9 @@ import { CarrinhoPage } from '../carrinho/carrinho';
       private getCompras(){
         this.rest.getCompras(this.navParams.get('token')).subscribe(
           data =>{
-            this.compras = this.reordenarHistorico(data);
+            this.compras = this.retirarDuplicacoes(data);
+            this.compras = this.reordenarHistorico(this.compras);
+            console.log(this.compras);
           },erro=>{
 
           })
@@ -94,12 +99,59 @@ import { CarrinhoPage } from '../carrinho/carrinho';
       }
 
       private reordenarHistorico(data){
-        for(var _i = 0; _i < data.length/2; _i++){
+        for(var _i = 0; _i < (data.length/2) - 1; _i++){
           var aux = data[_i];
           data[_i] = data[data.length - 1 - _i];
-          data[data.length - _i] = aux;
+          data[data.length - 1 - _i] = aux;
         }
         return data;
+      }
+
+      private retirarDuplicacoes(data){
+        for(var i = 0; i < (data.length - 1); i++){
+          for(var j = i + 1; j < data.length; j++){
+            if(data[i].purchase_id == data[j].purchase_id){
+              data.splice(j , 1);
+            }
+          }  
+        }
+        return data;
+      }
+
+      public pagarCompra(compra: any){
+        console.log(compra);
+        window.open(compra.Link, '_system', 'location=yes'); 
+        this.goToMenu()
+        return false;
+      }
+
+      public showQrcode(compra: any){
+        console.log(compra);
+        let alert = this.alertCtrl.create();
+        var title = '<span>' +'QR Code'+ '</span>'; 
+        var message = '<div><ngx-qrcode [qrc-value]='+ compra.hash + '></ngx-qrcode></div>';
+        message += "<div>"+compra.hash+"</div>";
+        alert.setTitle(title);
+        alert.setMessage(message);
+        alert.addButton('Voltar');
+        alert.present();
+      }
+
+      public pago(compra: any){
+        if(compra.situacao == 1){
+          return true;
+        }else{
+          return false;
+        }
+      }
+
+      private goToMenu(){
+        this.navCtrl.push(
+          MenuPage,
+          {
+            token: this.navParams.get('token')
+          }
+        );
       }
     }
 
