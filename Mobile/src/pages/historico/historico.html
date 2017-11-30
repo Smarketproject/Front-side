@@ -8,20 +8,47 @@
 
 
 <ion-content padding>
+    <!-- <ion-list inset>
+        <ion-item *ngFor="let compra of compras" (click)="showHistory(compra)">
+            <ion-icon name="cart" item-start></ion-icon>
+            <P>Compra</P>
+            <p>Data: {{getDate(compra.created_at)}}</p>
+            <p>Hora: {{getTime(compra.created_at)}}</p>
+            <p>Valor: R$ {{compra.Total}}</p>
+        </ion-item>
+      </ion-list> -->
 
-    <ion-card>
-        <ion-card-header>
-          Compras:
-        </ion-card-header>
-      
-        <ion-list inset>
-          <ion-item *ngFor="let compra of compras" (click)="showHistory(compra)">
+    <ion-card *ngFor="let compra of compras">
+        <ion-item *ngIf="compra.situacao == 1">
+            <ion-card-header>
               <ion-icon name="cart" item-start></ion-icon>
+              Compras: <p>Status: <strong style="color:green;">Pagamento confirmado</strong></p>
+            </ion-card-header>
+            <div style="margin-left:8px;">
               <p>Data: {{getDate(compra.created_at)}}</p>
               <p>Hora: {{getTime(compra.created_at)}}</p>
               <p>Valor: R$ {{compra.Total}}</p>
-          </ion-item>
-        </ion-list>
+              <!-- <button ion-button full (click)="showQrcode(compra)">Mostrar QRcode</button> -->
+              <button ion-button full (click)="showHistory(compra)">Mostrar Produtos</button>
+              <!-- <ngx-qrcode [qrc-value]="compra.purchase_id"></ngx-qrcode> -->
+              <ngx-qrcode [qrc-value]="compra.hash"></ngx-qrcode>
+              <p>value: {{ compra.hash }}</p>
+            </div>
+            
+        </ion-item>
+
+        <ion-item *ngIf="compra.situacao != 1">
+          <ion-card-header>
+            <ion-icon name="cart" item-start></ion-icon>
+            Compras: <p>Status: <strong style="color:red;">Pagamento não confirmado</strong></p>
+          </ion-card-header>
+          <div style="margin-left:8px;">
+            <button ion-button full (click)="pagarCompra(compra)">Realizar pagamento</button>
+            <ngx-qrcode [qrc-value]="compra.hash"></ngx-qrcode>
+            <p>value: {{ compra.hash }}</p>
+          </div>
+        </ion-item>
+        
         <div *ngIf="compras.length == 0" style="margin: 8px;">
           <p>Nenhuma compra foi realizada até o momento.</p>
         </div>

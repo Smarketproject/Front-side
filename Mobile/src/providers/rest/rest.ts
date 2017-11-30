@@ -21,7 +21,24 @@ export class RestProvider {
     
   }
 
-
+  //Requisição para requisitar a url do pagseguro
+  getRequisitarUrl(token: string, id: number){
+    let path = "finalizando/" + id + "/pagseguro/";
+    var header = {
+      label: "Authorization",
+      content: "Token " + token
+    }
+    return this.getRequest(path, header);
+  }
+  //Requisição para finalizar
+  postFinalizarCompra(token: string, data: any){
+    var path = "cart/";
+    var header = {
+      label: "Authorization",
+      content: "Token " + token
+    }
+    return this.postRequest(path, data, header);
+  }
   //Requisição do logout
   postLogout(token: string){
     var path = "logout/";
