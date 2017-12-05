@@ -101,13 +101,18 @@ export class CarrinhoPage {
     var index = this.procurarProduto(id);
     if (index != -1) {
       this.produtos.splice(index, 1);
-      // this.saveList();
+      this.saveList();
     }
   }
 
   //Salva a lista no provider
   public saveList(){
     this.form.setProductsList(this.produtos);
+  }
+
+  //Apaga a lista no provider
+  public dropList(){
+    this.form.setProductsList([]);
   }
 
   //Pega a lista salva no provider
@@ -150,6 +155,7 @@ export class CarrinhoPage {
         this.navParams.get('token'),
         data.purchase_id
       ).subscribe(response=>{
+        this.dropList();
         this.goToMenu();
       })
 

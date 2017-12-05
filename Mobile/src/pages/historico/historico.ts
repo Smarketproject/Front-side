@@ -28,6 +28,7 @@ import { MenuPage } from '../menu/menu';
         )
       {
         this.getCompras();
+        console.log(this.compras);
       }
 
       ionViewDidLoad() {}
@@ -37,13 +38,18 @@ import { MenuPage } from '../menu/menu';
           data =>{
             this.compras = this.retirarDuplicacoes(data);
             this.compras = this.reordenarHistorico(this.compras);
-            console.log(this.compras);
           },erro=>{
 
           })
       }
 
-
+      public hasCompras(){
+        if(this.compras.length == 0){
+          return false;
+        }else{
+          return true;
+        }
+      }
       public getDate(at){
         return at.slice(8,10) + " / " + at.slice(5,7) + " / " + at.slice(0,4);
       }
@@ -119,14 +125,12 @@ import { MenuPage } from '../menu/menu';
       }
 
       public pagarCompra(compra: any){
-        console.log(compra);
         window.open(compra.Link, '_system', 'location=yes'); 
         this.goToMenu()
         return false;
       }
 
       public showQrcode(compra: any){
-        console.log(compra);
         let alert = this.alertCtrl.create();
         var title = '<span>' +'QR Code'+ '</span>'; 
         var message = '<div><ngx-qrcode [qrc-value]='+ compra.hash + '></ngx-qrcode></div>';

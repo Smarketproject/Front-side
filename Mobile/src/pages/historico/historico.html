@@ -48,9 +48,8 @@
             <p>value: {{ compra.hash }}</p>
           </div>
         </ion-item>
-        
-        <div *ngIf="compras.length == 0" style="margin: 8px;">
-          <p>Nenhuma compra foi realizada até o momento.</p>
-        </div>
       </ion-card>
+      <div *ngIf="compras.length == 0" style="margin: 8px;">
+        <p>Nenhuma compra foi realizada até o momento.</p>
+      </div>
 </ion-content>
